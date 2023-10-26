@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class loginBttn extends StatelessWidget {
+class NextButton extends StatelessWidget {
   final String text;
   final Color color;
-  const loginBttn({super.key, required this.text, required this.color});
+  const NextButton({super.key, required this.text, required this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +16,9 @@ class loginBttn extends StatelessWidget {
           Expanded(
             child: Container(
               decoration: BoxDecoration(
-                  color: color, borderRadius: BorderRadius.circular(12)),
+                  color: color, borderRadius: BorderRadius.circular(40)),
               child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 20),
+                padding: EdgeInsets.symmetric(vertical: 15),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

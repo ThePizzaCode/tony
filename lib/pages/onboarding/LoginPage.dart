@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:tony/utils/loginBttn.dart';
-import 'package:tony/utils/phonefield.dart';
+import 'package:tony/components/NextButton.dart';
+import 'package:tony/components/PhoneField.dart';
+import 'package:tony/pages/onboarding/OTPPage.dart';
 
-class loginPage extends StatefulWidget {
-  const loginPage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  State<loginPage> createState() => _loginPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _loginPageState extends State<loginPage> {
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,9 +56,17 @@ class _loginPageState extends State<loginPage> {
                     SizedBox(
                       height: 10,
                     ),
-                    loginBttn(
-                      text: "Sa incepem",
-                      color: Colors.deepOrange,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => OTPPage()),
+                        );
+                      },
+                      child: NextButton(
+                        text: "Sa incepem",
+                        color: Colors.deepOrange,
+                      ),
                     ),
                     SizedBox(
                       height: 10,

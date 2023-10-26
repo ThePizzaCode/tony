@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tony/pages/onboarding/login.dart';
+import 'package:tony/components/NavBar.dart';
+import 'package:tony/pages/ProductPage.dart';
+import 'package:tony/pages/onboarding/LoginPage.dart';
+import 'package:tony/components/NavBar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: loginPage(),
+      home: ProductPage(),
     );
   }
 }
