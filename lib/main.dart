@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tony/components/NavBar.dart';
 import 'package:tony/pages/ProductPage.dart';
+import 'package:tony/pages/ProductPageTest.dart';
 import 'package:tony/pages/onboarding/LoginPage.dart';
 import 'package:tony/components/NavBar.dart';
 
@@ -15,7 +16,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: ProductPage(),
+      home: ProductPage(
+        productTitle: "Cappucino",
+        productDescription:
+            "Un deliciu de cafea cu arome intense, espresso perfect, lapte spumat și o notă de indulgență.",
+      ),
     );
   }
 }
