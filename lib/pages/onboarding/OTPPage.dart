@@ -63,7 +63,7 @@ class _OTPPageState extends State<OTPPage> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => homeScreen()),
+                      MaterialPageRoute(builder: (context) => HomePage()),
                     );
                   },
                   child: NextButton(text: "Continua", color: Colors.blue)),

@@ -23,7 +23,7 @@ class _NavBarState extends State<NavBar> {
   }
 
   final List<Widget> _screens = [
-    const homeScreen(),
+    const HomePage(),
   ];
 
   @override

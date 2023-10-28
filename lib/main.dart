@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tony/components/NavBar.dart';
+import 'package:tony/pages/HomePage.dart';
 import 'package:tony/pages/ProductPage.dart';
 import 'package:tony/pages/ProductPageTest.dart';
 import 'package:tony/pages/onboarding/LoginPage.dart';
@@ -15,12 +16,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: ProductPage(
-        productTitle: "Cappucino",
-        productDescription:
-            "Un deliciu de cafea cu arome intense, espresso perfect, lapte spumat și o notă de indulgență.",
-      ),
-    );
+    return MaterialApp(debugShowCheckedModeBanner: false, home: HomePage());
   }
 }
