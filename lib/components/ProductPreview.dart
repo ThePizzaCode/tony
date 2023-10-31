@@ -48,25 +48,35 @@ class ProductPreview extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.w700,
+                      fontFamily: 'UberMove'),
                 ),
                 Text(
                   "Cafeaua noastra espresso, echilibrata de lapte si acoperita cu un strat fin de spuma.",
-                  style: TextStyle(fontSize: 13),
+                  style: TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w500,
+                      fontFamily: 'UberMove'),
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 10,
                 ),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
                       price,
-                      style: TextStyle(fontSize: 14, color: Colors.orange),
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.orange,
+                          fontWeight: FontWeight.w700,
+                          fontFamily: 'UberMove'),
                     ),
                     Icon(
                       Icons.star,
-                      size: 14,
+                      size: 20,
                       color: Colors.orange,
                     )
                   ],

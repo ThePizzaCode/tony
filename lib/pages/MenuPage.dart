@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_barcodes/barcodes.dart';
 import 'package:tony/components/ProductPreview.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class MenuPage extends StatefulWidget {
+  const MenuPage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<MenuPage> createState() => _MenuPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _MenuPageState extends State<MenuPage> {
   void _openBottomSheet(BuildContext context) {
     showModalBottomSheet(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
@@ -74,50 +74,28 @@ class _HomePageState extends State<HomePage> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Buna Gabriel!",
-                        style: TextStyle(
-                            fontSize: 23,
-                            fontWeight: FontWeight.w700,
-                            fontFamily: 'UberMove'),
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            "450",
-                            style: TextStyle(
-                              fontSize: 23,
-                              fontWeight: FontWeight.w700,
-                              fontFamily: 'UberMove',
-                              color: Colors.orange,
-                            ),
-                          ),
-                          Icon(Icons.star, color: Colors.orange),
-                        ],
-                      ),
-                    ],
+                  Text(
+                    "Meniu",
+                    style: TextStyle(
+                        fontSize: 32,
+                        fontWeight: FontWeight.w700,
+                        fontFamily: 'UberMove'),
                   ),
                   SizedBox(height: 20),
                   Container(
-                    height: 100,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.pink[200],
+                    height: 40,
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        Text('Populare'),
+                        Text('Cafea'),
+                        Text('Mancare'),
+                        Text('Bauturi'),
+                      ],
                     ),
                   ),
                   SizedBox(height: 20),
-                  Text(
-                    "Recomandate pentru tine",
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w700,
-                      fontFamily: 'UberMove',
-                    ),
-                  ),
+
                   SizedBox(height: 15),
 
                   // Add the grid here
@@ -141,45 +119,6 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ],
-              ),
-              Positioned(
-                bottom: 10,
-                left: 0,
-                right: 0,
-                child: Center(
-                  child: GestureDetector(
-                    onTap: () {
-                      _openBottomSheet(context);
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                        color: Colors.orange,
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Row(
-                          mainAxisSize:
-                              MainAxisSize.min, // Center content horizontally
-                          children: [
-                            Icon(Icons.credit_card),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Text(
-                              "Fidelitate",
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: 'UberMove',
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
               ),
             ],
           ),
