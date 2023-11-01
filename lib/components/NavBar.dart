@@ -28,7 +28,7 @@ class _NavBarState extends State<NavBar> {
     const HomePage(),
     const MenuPage(),
     const ProfilePage(
-      pastTransactions: ['fd', 'gd'],
+      pastTransactions: ['fd', 'fsd', 'gd', 'gds'],
     ),
   ];
 
@@ -42,7 +42,7 @@ class _NavBarState extends State<NavBar> {
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.5), // Shadow color
-              offset: Offset(0, 9), // Changes the position of the shadow
+              offset: const Offset(0, 9), // Changes the position of the shadow
               blurRadius: 8, // Changes the size of the shadow
               spreadRadius: 5,
             ),
@@ -53,7 +53,6 @@ class _NavBarState extends State<NavBar> {
             padding: const EdgeInsets.only(
               left: 20.0,
               right: 20,
-              top: 10,
             ),
             child: GNav(
               gap: 10,
@@ -62,7 +61,7 @@ class _NavBarState extends State<NavBar> {
               activeColor: Colors.orange[900],
               padding: const EdgeInsets.all(15),
               backgroundColor: Colors.white.withOpacity(0),
-              tabBackgroundColor: Color.fromARGB(40, 230, 81, 0)!,
+              tabBackgroundColor: const Color.fromARGB(40, 230, 81, 0),
               textStyle: const TextStyle(
                   fontFamily: 'UberMoveMedium',
                   color: Color.fromARGB(255, 239, 108, 0),

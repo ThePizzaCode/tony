@@ -17,6 +17,9 @@ class BeverageSizeButton extends StatelessWidget {
       child: Container(
         height: side,
         width: side,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(6),
+            color: selected ? Colors.amber : Colors.grey),
         child: Center(
           child: Text(
             size,
@@ -28,9 +31,6 @@ class BeverageSizeButton extends StatelessWidget {
                     : const Color.fromARGB(255, 58, 58, 58)),
           ),
         ),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(6),
-            color: selected ? Colors.amber : Colors.grey),
       ),
     );
   }

@@ -12,17 +12,19 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   void _openBottomSheet(BuildContext context) {
     showModalBottomSheet(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20), topRight: Radius.circular(20))),
       context: context,
       isScrollControlled: true,
       builder: (BuildContext context) {
         return FractionallySizedBox(
-          heightFactor: 0.3, // Adjust this factor as needed
+          heightFactor: 0.34, // Adjust this factor as needed
           child: Container(
-            padding: EdgeInsets.all(20.0),
+            padding: const EdgeInsets.all(20.0),
             child: Column(
               children: [
-                Text(
+                const Text(
                   "Cardul tau de fidelitate",
                   style: TextStyle(
                     fontSize: 24,
@@ -39,21 +41,24 @@ class _HomePageState extends State<HomePage> {
                       fontFamily: 'UberMove'),
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 SizedBox(
                   height: 100,
                   child: SfBarcodeGenerator(
-                    value: "77714564576",
+                    value: "111111",
                     showValue: true,
                     symbology: Code128(),
-                    textStyle: TextStyle(
+                    textStyle: const TextStyle(
                         letterSpacing: 10,
                         fontSize: 16,
                         fontWeight: FontWeight.w700,
                         fontFamily: 'UberMove'),
                   ),
+                ),
+                const SizedBox(
+                  height: 5,
                 ),
               ],
             ),
@@ -67,14 +72,14 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 25.0),
+        padding: const EdgeInsets.only(left: 25.0, right: 25, top: 20),
         child: SafeArea(
           child: Stack(
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
@@ -100,7 +105,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Container(
                     height: 100,
                     width: double.infinity,
@@ -109,8 +114,8 @@ class _HomePageState extends State<HomePage> {
                       color: Colors.pink[200],
                     ),
                   ),
-                  SizedBox(height: 20),
-                  Text(
+                  const SizedBox(height: 20),
+                  const Text(
                     "Recomandate pentru tine",
                     style: TextStyle(
                       fontSize: 15,
@@ -118,7 +123,7 @@ class _HomePageState extends State<HomePage> {
                       fontFamily: 'UberMove',
                     ),
                   ),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
 
                   // Add the grid here
                   Expanded(
@@ -127,9 +132,9 @@ class _HomePageState extends State<HomePage> {
                       crossAxisSpacing: 15,
                       mainAxisSpacing: 15,
                       childAspectRatio:
-                          0.62, // You can adjust this ratio as needed
+                          0.53, // You can adjust this ratio as needed
                       shrinkWrap: true,
-                      children: [
+                      children: const [
                         // Add your grid items here
                         ProductPreview(title: "Cafe Late", price: "500"),
                         ProductPreview(title: "Late Machiato", price: "2000"),
@@ -156,8 +161,8 @@ class _HomePageState extends State<HomePage> {
                         borderRadius: BorderRadius.circular(30),
                         color: Colors.orange,
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
+                      child: const Padding(
+                        padding: EdgeInsets.all(10.0),
                         child: Row(
                           mainAxisSize:
                               MainAxisSize.min, // Center content horizontally

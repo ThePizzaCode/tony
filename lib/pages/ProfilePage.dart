@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tony/components/TransactionPreview.dart';
+import 'package:tony/pages/TransactionsPage.dart';
 
 class ProfilePage extends StatefulWidget {
   final List<String> pastTransactions;
@@ -22,14 +23,14 @@ class _ProfilePageState extends State<ProfilePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 'Gabriel Stanciu',
                 style: TextStyle(
                     fontSize: 24,
                     fontFamily: 'UberMove',
                     fontWeight: FontWeight.w700),
               ),
-              Row(
+              const Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
@@ -46,10 +47,10 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
-              Text(
+              const Text(
                 'Tranzactii recente',
                 style: TextStyle(
                   fontSize: 20,
@@ -57,7 +58,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   fontFamily: 'UberMove',
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               widget.pastTransactions.isEmpty
@@ -65,8 +66,8 @@ class _ProfilePageState extends State<ProfilePage> {
                       decoration: BoxDecoration(
                           color: Colors.grey[200],
                           borderRadius: BorderRadius.circular(10)),
-                      child: Padding(
-                        padding: const EdgeInsets.all(15.0),
+                      child: const Padding(
+                        padding: EdgeInsets.all(15.0),
                         child: Center(
                           child: Text(
                             'Nu exista date de afisat',
@@ -86,19 +87,29 @@ class _ProfilePageState extends State<ProfilePage> {
                         child: Expanded(
                           child: ListView.builder(
                               shrinkWrap: true,
-                              physics: NeverScrollableScrollPhysics(),
+                              physics: const NeverScrollableScrollPhysics(),
                               itemCount: widget.pastTransactions.length > 3
                                   ? 4
                                   : widget.pastTransactions.length,
                               itemBuilder: (context, index) {
                                 if (index == 3) {
                                   return Center(
-                                      child: Text(
-                                    'Arata mai multe',
-                                    style: TextStyle(
-                                        color: Colors.blue[700],
-                                        fontFamily: 'UberMove',
-                                        fontWeight: FontWeight.w500),
+                                      child: GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const TransactionsPage()),
+                                      );
+                                    },
+                                    child: Text(
+                                      'Arata mai multe',
+                                      style: TextStyle(
+                                          color: Colors.blue[700],
+                                          fontFamily: 'UberMove',
+                                          fontWeight: FontWeight.w500),
+                                    ),
                                   ));
                                 } else {
                                   return Column(
@@ -110,7 +121,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                       ),
                                       if (index <
                                           widget.pastTransactions.length - 1)
-                                        Divider(
+                                        const Divider(
                                           color: Color(0xFFCCCCCC),
                                         ),
                                     ],
@@ -120,15 +131,15 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ),
                     ),
-              SizedBox(
+              const SizedBox(
                 height: 25,
               ),
               Container(
                 decoration: BoxDecoration(
                     color: Colors.grey[200],
                     borderRadius: BorderRadius.circular(10)),
-                child: Padding(
-                  padding: const EdgeInsets.all(15.0),
+                child: const Padding(
+                  padding: EdgeInsets.all(15.0),
                   child: Row(
                     children: [
                       Icon(

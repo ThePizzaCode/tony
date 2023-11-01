@@ -18,12 +18,12 @@ class NextButton extends StatelessWidget {
               decoration: BoxDecoration(
                   color: color, borderRadius: BorderRadius.circular(40)),
               child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 15),
+                padding: const EdgeInsets.symmetric(vertical: 15),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                        style: TextStyle(color: Colors.white, fontSize: 18),
+                        style: const TextStyle(color: Colors.white, fontSize: 18),
                         text),
                   ],
                 ),

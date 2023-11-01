@@ -25,7 +25,7 @@ class _LoginPageState extends State<LoginPage> {
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
                   children: [
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Column(
@@ -43,37 +43,37 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
-                    Text(
+                    const Text(
                         style: TextStyle(fontSize: 15),
                         "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout."),
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
-                    phoneField(),
-                    SizedBox(
+                    const phoneField(),
+                    const SizedBox(
                       height: 10,
                     ),
                     GestureDetector(
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => OTPPage()),
+                          MaterialPageRoute(builder: (context) => const OTPPage()),
                         );
                       },
-                      child: NextButton(
+                      child: const NextButton(
                         text: "Sa incepem",
                         color: Colors.deepOrange,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
-                    Text(
+                    const Text(
                         "Prin continuare esti de acord cu termenii si conditiile."),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                   ],

@@ -24,37 +24,37 @@ class _OTPPageState extends State<OTPPage> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(height: 20),
-                  Text(
+                  const SizedBox(height: 20),
+                  const Text(
                     "Scrie codul primit",
                     style: TextStyle(fontSize: 30),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
-                  Text(
+                  const Text(
                     "Scrie codul de 4 cifre trimis la +4012345678",
                     style: TextStyle(fontSize: 15),
                   ),
-                  Text(
+                  const Text(
                     "Nu ai primit codul? Trimite din nou",
                     style: TextStyle(fontSize: 15),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   OTPTextField(
                     length: 4,
                     width: 400,
                     fieldWidth: 20,
-                    style: TextStyle(fontSize: 17),
+                    style: const TextStyle(fontSize: 17),
                     textFieldAlignment: MainAxisAlignment.spaceAround,
                     fieldStyle: FieldStyle.underline,
                     onCompleted: (pin) {
-                      print("Completed: " + pin);
+                      print("Completed: $pin");
                     },
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                 ],
@@ -63,10 +63,10 @@ class _OTPPageState extends State<OTPPage> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => HomePage()),
+                      MaterialPageRoute(builder: (context) => const HomePage()),
                     );
                   },
-                  child: NextButton(text: "Continua", color: Colors.blue)),
+                  child: const NextButton(text: "Continua", color: Colors.blue)),
             ],
           ),
         ),

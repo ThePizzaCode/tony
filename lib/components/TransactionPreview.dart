@@ -5,7 +5,7 @@ class TransactionPreview extends StatelessWidget {
   final DateTime date;
   final int noOfProducts;
   final int price;
-  TransactionPreview({
+  const TransactionPreview({
     required this.date,
     required this.noOfProducts,
     required this.price,
@@ -26,14 +26,14 @@ class TransactionPreview extends StatelessWidget {
               children: [
                 Text(
                   formattedDate,
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontFamily: 'UberMove',
                       fontSize: 14,
                       fontWeight: FontWeight.w700),
                 ),
                 Text(
                   '$noOfProducts ${noOfProducts == 1 ? 'produs' : 'produse'}',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: 'UberMove',
                     color: Color(0xFF737373),
                     fontSize: 14,
@@ -46,15 +46,15 @@ class TransactionPreview extends StatelessWidget {
               children: [
                 Text(
                   price.toString(),
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontFamily: 'UberMove',
                       fontSize: 14,
                       fontWeight: FontWeight.w700),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 5,
                 ),
-                Icon(
+                const Icon(
                   Icons.star_rounded,
                   size: 15,
                 )

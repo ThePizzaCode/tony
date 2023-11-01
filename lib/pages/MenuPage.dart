@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_barcodes/barcodes.dart';
+import 'package:tony/components/MenuFilterButton.dart';
 import 'package:tony/components/ProductPreview.dart';
+import 'package:tony/env/env.dart';
 
 class MenuPage extends StatefulWidget {
   const MenuPage({super.key});
@@ -10,93 +11,99 @@ class MenuPage extends StatefulWidget {
 }
 
 class _MenuPageState extends State<MenuPage> {
-  void _openBottomSheet(BuildContext context) {
-    showModalBottomSheet(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-      context: context,
-      isScrollControlled: true,
-      builder: (BuildContext context) {
-        return FractionallySizedBox(
-          heightFactor: 0.3, // Adjust this factor as needed
-          child: Container(
-            padding: EdgeInsets.all(20.0),
-            child: Column(
-              children: [
-                Text(
-                  "Cardul tau de fidelitate",
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w700,
-                    fontFamily: 'UberMove',
-                  ),
-                ),
-                Text(
-                  "Scaneaza inainte de plata ca sa te bucuri de reduceri instant și acumulează puncte de fidelitate.",
-                  style: TextStyle(
-                      fontSize: 13,
-                      color: Colors.grey[600],
-                      fontWeight: FontWeight.w700,
-                      fontFamily: 'UberMove'),
-                  textAlign: TextAlign.center,
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                SizedBox(
-                  height: 100,
-                  child: SfBarcodeGenerator(
-                    value: "77714564576",
-                    showValue: true,
-                    symbology: Code128(),
-                    textStyle: TextStyle(
-                        letterSpacing: 10,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                        fontFamily: 'UberMove'),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
+  String selectedFilter = "Populare"; // Default filter
+
+  void setFilter(String filter) {
+    setState(() {
+      selectedFilter = filter;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    // Define your grid items based on the selected filter
+    List<Widget> gridItems = [
+      const ProductPreview(title: "Cafe Late", price: "500"),
+      const ProductPreview(title: "Late Machiato", price: "2000"),
+      const ProductPreview(title: "Sandwich", price: "500"),
+      const ProductPreview(title: "Clatite", price: "500"),
+      const ProductPreview(title: "Hell", price: "500"),
+      // Your grid items here
+    ];
+
+    if (selectedFilter == "Populare") {
+      // Filter based on the "Populare" filter
+      gridItems = [
+        const ProductPreview(title: "Cafe Late", price: "500"),
+        const ProductPreview(title: "Late Machiato", price: "2000"),
+        const ProductPreview(title: "Sandwich", price: "500"),
+        const ProductPreview(title: "Clatite", price: "500"),
+        const ProductPreview(title: "Hell", price: "500"),
+      ];
+    } else if (selectedFilter == "Mancare") {
+      // Filter based on the "Mancare" filter
+      gridItems = [
+        const ProductPreview(title: "Sandwich", price: "500"),
+        const ProductPreview(title: "Clatite", price: "500"),
+      ];
+    } else if (selectedFilter == "Cafea") {
+      // Filter based on the "Cafea" filter
+      gridItems = [
+        const ProductPreview(title: "Cafe Late", price: "500"),
+        const ProductPreview(title: "Late Machiato", price: "2000"),
+      ];
+    } else if (selectedFilter == "Bauturi") {
+      // Filter based on the "Bauturi" filter
+      gridItems = [
+        const ProductPreview(title: "Hell", price: "500"),
+      ];
+    }
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 25.0),
+        padding: const EdgeInsets.only(left: 25.0, right: 25, top: 20),
         child: SafeArea(
           child: Stack(
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     "Meniu",
                     style: TextStyle(
                         fontSize: 32,
                         fontWeight: FontWeight.w700,
                         fontFamily: 'UberMove'),
                   ),
-                  SizedBox(height: 20),
-                  Container(
+                  const SizedBox(height: 20),
+                  SizedBox(
                     height: 40,
                     child: ListView(
                       scrollDirection: Axis.horizontal,
                       children: [
-                        Text('Populare'),
-                        Text('Cafea'),
-                        Text('Mancare'),
-                        Text('Bauturi'),
+                        MenuFilterButton(
+                          text: "Populare",
+                          isSelected: selectedFilter == "Populare",
+                          onTap: () => setFilter("Populare"),
+                        ),
+                        MenuFilterButton(
+                          text: "Mancare",
+                          isSelected: selectedFilter == "Mancare",
+                          onTap: () => setFilter("Mancare"),
+                        ),
+                        MenuFilterButton(
+                          text: "Cafea",
+                          isSelected: selectedFilter == "Cafea",
+                          onTap: () => setFilter("Cafea"),
+                        ),
+                        MenuFilterButton(
+                          text: "Bauturi",
+                          isSelected: selectedFilter == "Bauturi",
+                          onTap: () => setFilter("Bauturi"),
+                        ),
                       ],
                     ),
                   ),
-                  SizedBox(height: 20),
-
-                  SizedBox(height: 15),
+                  const SizedBox(height: 20),
 
                   // Add the grid here
                   Expanded(
@@ -105,17 +112,9 @@ class _MenuPageState extends State<MenuPage> {
                       crossAxisSpacing: 15,
                       mainAxisSpacing: 15,
                       childAspectRatio:
-                          0.62, // You can adjust this ratio as needed
-                      shrinkWrap: true,
-                      children: [
-                        // Add your grid items here
-                        ProductPreview(title: "Cafe Late", price: "500"),
-                        ProductPreview(title: "Late Machiato", price: "2000"),
-                        ProductPreview(title: "Cafe Late", price: "500"),
-                        ProductPreview(title: "Cafe Late", price: "500"),
-                        ProductPreview(title: "Cafe Late", price: "500"),
-                        // Add more grid items as needed
-                      ],
+                          childAR, // You can adjust this ratio as needed
+
+                      children: gridItems,
                     ),
                   ),
                 ],

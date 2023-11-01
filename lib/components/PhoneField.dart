@@ -21,7 +21,7 @@ class _phoneFieldState extends State<phoneField> {
           ),
           decoration: InputDecoration(
             prefixIcon: Padding(
-              padding: EdgeInsets.only(bottom: 5, left: 15),
+              padding: const EdgeInsets.only(bottom: 5, left: 15),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -30,10 +30,10 @@ class _phoneFieldState extends State<phoneField> {
                     height: 30,
                     width: 30,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
-                  Text(
+                  const Text(
                     "+40 ",
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
@@ -42,12 +42,12 @@ class _phoneFieldState extends State<phoneField> {
             ),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(color: Colors.grey),
+              borderSide: const BorderSide(color: Colors.grey),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
               borderSide:
-                  BorderSide(color: Colors.grey), // Set focused border color
+                  const BorderSide(color: Colors.grey), // Set focused border color
             ),
             hoverColor: Colors.grey, // Set hover color
             filled: false,
