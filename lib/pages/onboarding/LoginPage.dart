@@ -60,7 +60,8 @@ class _LoginPageState extends State<LoginPage> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => const OTPPage()),
+                          MaterialPageRoute(
+                              builder: (context) => const OTPPage()),
                         );
                       },
                       child: const NextButton(
@@ -73,9 +74,6 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     const Text(
                         "Prin continuare esti de acord cu termenii si conditiile."),
-                    const SizedBox(
-                      height: 20,
-                    ),
                   ],
                 ),
               ),

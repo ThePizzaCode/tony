@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
+import 'package:tony/components/TextFieldBoxOTP.dart';
 import 'package:tony/env/env.dart';
 import 'package:tony/pages/HomePage.dart';
-import 'package:tony/components/NextButton.dart';
-import 'package:tony/pages/onboarding/NamePage.dart';
 
-class OTPPage extends StatefulWidget {
-  const OTPPage({super.key});
+class NamePage extends StatefulWidget {
+  const NamePage({super.key});
 
   @override
-  State<OTPPage> createState() => _OTPPageState();
+  State<NamePage> createState() => _NamePageState();
 }
 
-class _OTPPageState extends State<OTPPage> {
+class _NamePageState extends State<NamePage> {
+  TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,34 +28,21 @@ class _OTPPageState extends State<OTPPage> {
                 children: [
                   const SizedBox(height: 20),
                   const Text(
-                    "Scrie codul primit",
+                    "Introdu prenumele tau",
                     style: TextStyle(fontSize: 30, fontFamily: 'UberMove'),
                   ),
                   const SizedBox(
-                    height: 15,
+                    height: 10,
                   ),
                   const Text(
-                    "Scrie codul de 4 cifre trimis la +4012345678",
-                    style: TextStyle(fontSize: 15, fontFamily: 'UberMove'),
-                  ),
-                  const Text(
-                    "Nu ai primit codul? Trimite din nou",
+                    "Il vom folosi pentru a sti cum sa te salutam!",
                     style: TextStyle(fontSize: 15, fontFamily: 'UberMove'),
                   ),
                   const SizedBox(
-                    height: 15,
+                    height: 20,
                   ),
-                  OTPTextField(
-                    length: 4,
-                    width: 400,
-                    fieldWidth: 20,
-                    style: const TextStyle(fontSize: 17),
-                    textFieldAlignment: MainAxisAlignment.spaceAround,
-                    fieldStyle: FieldStyle.underline,
-                    onCompleted: (pin) {
-                      print("Completed: $pin");
-                    },
-                  ),
+                  TextFieldBoxOTP(
+                      controller: controller, keyboardType: TextInputType.name),
                   const SizedBox(
                     height: 30,
                   ),
@@ -65,7 +52,7 @@ class _OTPPageState extends State<OTPPage> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const NamePage()),
+                    MaterialPageRoute(builder: (context) => const HomePage()),
                   );
                 },
                 child: Container(

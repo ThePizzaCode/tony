@@ -23,7 +23,10 @@ class _MenuPageState extends State<MenuPage> {
   Widget build(BuildContext context) {
     // Define your grid items based on the selected filter
     List<Widget> gridItems = [
-      const ProductPreview(title: "Cafe Late", price: "500"),
+      const ProductPreview(
+        title: "Cafe Late",
+        price: "500",
+      ),
       const ProductPreview(title: "Late Machiato", price: "2000"),
       const ProductPreview(title: "Sandwich", price: "500"),
       const ProductPreview(title: "Clatite", price: "500"),
@@ -58,6 +61,8 @@ class _MenuPageState extends State<MenuPage> {
         const ProductPreview(title: "Hell", price: "500"),
       ];
     }
+
+    final childAspectRatio = MediaQuery.of(context).size.width / (2 * 350);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.only(left: 25.0, right: 25, top: 20),
@@ -112,7 +117,7 @@ class _MenuPageState extends State<MenuPage> {
                       crossAxisSpacing: 15,
                       mainAxisSpacing: 15,
                       childAspectRatio:
-                          childAR, // You can adjust this ratio as needed
+                          childAspectRatio, // You can adjust this ratio as needed
 
                       children: gridItems,
                     ),

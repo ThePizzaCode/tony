@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_barcodes/barcodes.dart';
 import 'package:tony/components/ProductPreview.dart';
+import 'package:tony/env/env.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -18,50 +19,53 @@ class _HomePageState extends State<HomePage> {
       context: context,
       isScrollControlled: true,
       builder: (BuildContext context) {
-        return FractionallySizedBox(
-          heightFactor: 0.34, // Adjust this factor as needed
-          child: Container(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              children: [
-                const Text(
-                  "Cardul tau de fidelitate",
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w700,
-                    fontFamily: 'UberMove',
-                  ),
-                ),
-                Text(
-                  "Scaneaza inainte de plata ca sa te bucuri de reduceri instant și acumulează puncte de fidelitate.",
-                  style: TextStyle(
-                      fontSize: 13,
-                      color: Colors.grey[600],
+        return Container(
+          height: 250,
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                children: [
+                  const Text(
+                    "Cardul tau de fidelitate",
+                    style: TextStyle(
+                      fontSize: 24,
                       fontWeight: FontWeight.w700,
-                      fontFamily: 'UberMove'),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                SizedBox(
-                  height: 100,
-                  child: SfBarcodeGenerator(
-                    value: "111111",
-                    showValue: true,
-                    symbology: Code128(),
-                    textStyle: const TextStyle(
-                        letterSpacing: 10,
-                        fontSize: 16,
+                      fontFamily: 'UberMove',
+                    ),
+                  ),
+                  Text(
+                    "Scaneaza inainte de plata ca sa te bucuri de reduceri instant și acumulează puncte de fidelitate.",
+                    style: TextStyle(
+                        fontSize: 13,
+                        color: Colors.grey[600],
                         fontWeight: FontWeight.w700,
                         fontFamily: 'UberMove'),
+                    textAlign: TextAlign.center,
                   ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 100,
+                child: SfBarcodeGenerator(
+                  value: "111111",
+                  showValue: true,
+                  symbology: Code128(),
+                  textStyle: const TextStyle(
+                      letterSpacing: 10,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      fontFamily: 'UberMove'),
                 ),
-                const SizedBox(
-                  height: 5,
-                ),
-              ],
-            ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+            ],
           ),
         );
       },
@@ -70,70 +74,75 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final childAspectRatio = MediaQuery.of(context).size.width / (2 * 350);
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.only(left: 25.0, right: 25, top: 20),
         child: SafeArea(
           child: Stack(
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Buna Gabriel!",
-                        style: TextStyle(
+              SingleChildScrollView(
+                // Wrap the Column with SingleChildScrollView
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Buna Gabriel!",
+                          style: TextStyle(
                             fontSize: 23,
                             fontWeight: FontWeight.w700,
-                            fontFamily: 'UberMove'),
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            "450",
-                            style: TextStyle(
-                              fontSize: 23,
-                              fontWeight: FontWeight.w700,
-                              fontFamily: 'UberMove',
-                              color: Colors.orange,
-                            ),
+                            fontFamily: 'UberMove',
                           ),
-                          Icon(Icons.star, color: Colors.orange),
-                        ],
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              "450",
+                              style: TextStyle(
+                                fontSize: 23,
+                                fontWeight: FontWeight.w700,
+                                fontFamily: 'UberMove',
+                                color: Colors.orange,
+                              ),
+                            ),
+                            Icon(Icons.star, color: Colors.orange),
+                          ],
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
+                    Container(
+                      height: 100,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: Colors.pink[200],
                       ),
-                    ],
-                  ),
-                  const SizedBox(height: 20),
-                  Container(
-                    height: 100,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.pink[200],
                     ),
-                  ),
-                  const SizedBox(height: 20),
-                  const Text(
-                    "Recomandate pentru tine",
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w700,
-                      fontFamily: 'UberMove',
+                    const SizedBox(height: 20),
+                    const Text(
+                      "Recomandate pentru tine",
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w700,
+                        fontFamily: 'UberMove',
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 15),
+                    const SizedBox(height: 15),
 
-                  // Add the grid here
-                  Expanded(
-                    child: GridView.count(
-                      crossAxisCount: 2, // 2 columns
+                    // Add the grid here
+                    GridView.count(
+                      crossAxisCount: 2,
                       crossAxisSpacing: 15,
                       mainAxisSpacing: 15,
-                      childAspectRatio:
-                          0.53, // You can adjust this ratio as needed
+                      childAspectRatio: childAspectRatio,
                       shrinkWrap: true,
+                      physics:
+                          NeverScrollableScrollPhysics(), // Disable scrolling within GridView
                       children: const [
                         // Add your grid items here
                         ProductPreview(title: "Cafe Late", price: "500"),
@@ -144,8 +153,11 @@ class _HomePageState extends State<HomePage> {
                         // Add more grid items as needed
                       ],
                     ),
-                  ),
-                ],
+                    SizedBox(
+                      height: 10,
+                    ),
+                  ],
+                ),
               ),
               Positioned(
                 bottom: 10,

@@ -1,20 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:tony/env/env.dart';
 import 'package:tony/pages/ProductPage.dart';
 
 class ProductPreview extends StatelessWidget {
   final String title;
-  final String? description;
-  final AssetImage? image;
+  final String description;
+  final NetworkImage? image;
   final String price;
   const ProductPreview(
       {required this.title,
-      this.description,
+      this.description =
+          'fgsdgdhfgdsmgnfjgdnkfng,.dkfsngbd,nmksf.jgbnfmsa,jgdbns,fgdbn,mfsgbdn,sfjbgdhs,jfndfgdsls',
+
+      ///Placeholder, delete before deploy
       this.image,
       required this.price,
       super.key});
 
   @override
   Widget build(BuildContext context) {
+    String shortenedDescription = description;
+    if (description.length > maxLenghtProductPreviewDescription) {
+      shortenedDescription =
+          '${description.substring(0, maxLenghtProductPreviewDescription)}...';
+    }
+
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -65,8 +75,8 @@ class ProductPreview extends StatelessWidget {
                             fontWeight: FontWeight.w700,
                             fontFamily: 'UberMove'),
                       ),
-                      const Text(
-                        "Cafeaua noastra espresso, echilibrata de lapte si acoperita cu un strat fin de spuma.",
+                      Text(
+                        shortenedDescription,
                         style: TextStyle(
                             fontSize: 13,
                             fontWeight: FontWeight.w500,

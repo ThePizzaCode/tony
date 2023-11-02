@@ -31,35 +31,24 @@ class TransactionPreview extends StatelessWidget {
                       fontSize: 14,
                       fontWeight: FontWeight.w700),
                 ),
-                Text(
-                  '$noOfProducts ${noOfProducts == 1 ? 'produs' : 'produse'}',
-                  style: const TextStyle(
-                    fontFamily: 'UberMove',
-                    color: Color(0xFF737373),
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                  ),
-                )
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      '+$price',
+                      style: const TextStyle(
+                          fontFamily: 'UberMove',
+                          fontSize: 14,
+                          fontWeight: FontWeight.w700),
+                    ),
+                    const Icon(
+                      Icons.star_rounded,
+                      size: 15,
+                    )
+                  ],
+                ),
               ],
             ),
-            Row(
-              children: [
-                Text(
-                  price.toString(),
-                  style: const TextStyle(
-                      fontFamily: 'UberMove',
-                      fontSize: 14,
-                      fontWeight: FontWeight.w700),
-                ),
-                const SizedBox(
-                  width: 5,
-                ),
-                const Icon(
-                  Icons.star_rounded,
-                  size: 15,
-                )
-              ],
-            )
           ],
         ),
       ],
