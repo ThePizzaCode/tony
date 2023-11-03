@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class PhoneField extends StatefulWidget {
-  const PhoneField({super.key});
+  final TextEditingController controller;
+  const PhoneField({required this.controller, super.key});
 
   @override
   State<PhoneField> createState() => _PhoneFieldState();
@@ -13,6 +14,7 @@ class _PhoneFieldState extends State<PhoneField> {
     return Column(
       children: [
         TextField(
+          controller: widget.controller,
           keyboardType: TextInputType.phone,
           //must add controller
           cursorColor: Colors.black,

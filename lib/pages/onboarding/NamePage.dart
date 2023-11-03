@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:tony/components/TextFieldBoxOTP.dart';
-import 'package:tony/env/env.dart';
-import 'package:tony/pages/HomePage.dart';
+import 'package:provider/provider.dart';
+import '../../components/NavBar.dart';
+import '../../components/TextFieldBoxOTP.dart';
+import '../../env/env.dart';
+import '../../providers/user.dart';
 
 class NamePage extends StatefulWidget {
   const NamePage({super.key});
@@ -11,7 +13,7 @@ class NamePage extends StatefulWidget {
 }
 
 class _NamePageState extends State<NamePage> {
-  TextEditingController controller = TextEditingController();
+  TextEditingController nameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,18 +42,28 @@ class _NamePageState extends State<NamePage> {
                     height: 20,
                   ),
                   TextFieldBoxOTP(
-                      controller: controller, keyboardType: TextInputType.name),
+                      controller: nameController,
+                      keyboardType: TextInputType.name),
                   const SizedBox(
                     height: 30,
                   ),
                 ],
               ),
               GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const HomePage()),
-                  );
+                onTap: () async {
+                  final user = Provider.of<User>(context, listen: false);
+
+                  await user.signupUsername(nameController.text);
+
+                  if (user.errorMessage == '') {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const NavBar(
+                                pageIndex: 0,
+                              )),
+                    );
+                  }
                 },
                 child: Container(
                   width: double.infinity,

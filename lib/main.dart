@@ -1,8 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:tony/components/NavBar.dart';
+import 'package:provider/provider.dart';
+import 'package:tony/pages/SplashScreenPage.dart';
+// import 'package:tony/components/NavBar.dart';
+
+// providers
+import './providers/user.dart';
+import './providers/products.dart';
+import './providers/wallet.dart';
+import './providers/transactions.dart';
+import './providers/order.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (_) => User()),
+    ChangeNotifierProvider(create: (_) => Products()),
+    ChangeNotifierProvider(create: (_) => Wallet()),
+    ChangeNotifierProvider(create: (_) => Transactions()),
+    ChangeNotifierProvider(create: (_) => Order()),
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -12,9 +27,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: NavBar(
-          pageIndex: 0,
-        ));
+        debugShowCheckedModeBanner: false, home: SplashScreen());
   }
 }

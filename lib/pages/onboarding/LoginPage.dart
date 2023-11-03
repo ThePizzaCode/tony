@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:tony/components/NextButton.dart';
-import 'package:tony/components/PhoneField.dart';
-import 'package:tony/pages/onboarding/OTPPage.dart';
+
+import '../../components/NextButton.dart';
+import '../../components/PhoneField.dart';
+import '../../pages/onboarding/OTPPage.dart';
+
+import 'package:provider/provider.dart';
+import '../../providers/user.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -11,6 +15,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  TextEditingController phoneFieldController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,17 +58,32 @@ class _LoginPageState extends State<LoginPage> {
                     const SizedBox(
                       height: 30,
                     ),
-                    const PhoneField(),
+                    PhoneField(
+                      controller: phoneFieldController,
+                    ),
                     const SizedBox(
                       height: 10,
                     ),
                     GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const OTPPage()),
-                        );
+                      onTap: () async {
+                        var user = Provider.of<User>(context, listen: false);
+                        String phone = '0${phoneFieldController.text}';
+
+                        await user.checkUser(phone);
+
+                        if (user.check == true) {
+                          await user.loginPhone(phone);
+                        } else if (user.check == false) {
+                          await user.signupPhone(phone);
+                        }
+
+                        if (user.errorMessage == '') {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const OTPPage()),
+                          );
+                        }
                       },
                       child: const NextButton(
                         text: "Sa incepem",

@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
-import 'package:tony/env/env.dart';
-import 'package:tony/pages/onboarding/NamePage.dart';
+import '../../components/NavBar.dart';
+import '../../pages/onboarding/NamePage.dart';
+
+import '../../env/env.dart';
+
+import 'package:provider/provider.dart';
+import '../../providers/user.dart';
 
 class OTPPage extends StatefulWidget {
   const OTPPage({super.key});
@@ -50,8 +55,31 @@ class _OTPPageState extends State<OTPPage> {
                     style: const TextStyle(fontSize: 17),
                     textFieldAlignment: MainAxisAlignment.spaceAround,
                     fieldStyle: FieldStyle.underline,
-                    onCompleted: (pin) {
-                      print("Completed: $pin");
+                    onCompleted: (code) {
+                      var user = Provider.of<User>(context, listen: false);
+
+                      if (user.check) {
+                        user.loginCode(code);
+
+                        if (user.errorMessage == '') {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const NavBar(pageIndex: 0),
+                              ));
+                        }
+                      } else {
+                        user.signupCode(code);
+
+                        if (user.errorMessage == '') {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const NamePage(),
+                              ));
+                        }
+                      }
                     },
                   ),
                   const SizedBox(

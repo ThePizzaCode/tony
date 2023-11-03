@@ -10,8 +10,6 @@ class User with ChangeNotifier {
   String errorMessage = '';
   bool loading = false;
 
-  bool loggedIn = false;
-
   String token = '';
 
   UserModel user = UserModel(
@@ -28,7 +26,6 @@ class User with ChangeNotifier {
   loadUser() async {
     token = await getToken();
     user = await getUser();
-    loggedIn = true;
 
     notifyListeners();
   }
@@ -49,6 +46,8 @@ class User with ChangeNotifier {
     final body = json.decode(response.body);
     if (response.statusCode == 200) {
       check = body['check'];
+
+      notifyListeners();
     }
   }
 
@@ -70,6 +69,8 @@ class User with ChangeNotifier {
     final body = json.decode(response.body);
     if (response.statusCode != 200) {
       errorMessage = body['message'];
+
+      print("signup phone: $errorMessage");
       notifyListeners();
     }
   }
@@ -92,6 +93,8 @@ class User with ChangeNotifier {
     final body = json.decode(response.body);
     if (response.statusCode == 200) {
       token = body["token"];
+
+      print(token);
 
       notifyListeners();
     } else {
@@ -120,6 +123,8 @@ class User with ChangeNotifier {
       token = body["token"];
       user = UserModel.fromJSON(body["user"]);
 
+      setUser(user, token);
+
       notifyListeners();
     } else {
       errorMessage = body['message'];
@@ -146,6 +151,7 @@ class User with ChangeNotifier {
     final body = json.decode(response.body);
     if (response.statusCode != 200) {
       errorMessage = body['message'];
+      print(errorMessage);
 
       notifyListeners();
     }
@@ -177,5 +183,19 @@ class User with ChangeNotifier {
 
       notifyListeners();
     }
+  }
+
+  logout() async {
+    token = '';
+    user = UserModel(
+      id: '',
+      walletID: '',
+      username: '',
+      phone: '',
+    );
+
+    await deleteUser();
+
+    print(token);
   }
 }

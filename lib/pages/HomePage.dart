@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_barcodes/barcodes.dart';
 import 'package:tony/components/ProductPreview.dart';
+import 'package:tony/providers/user.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -86,33 +88,35 @@ class _HomePageState extends State<HomePage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Buna Gabriel!",
-                          style: TextStyle(
-                            fontSize: 23,
-                            fontWeight: FontWeight.w700,
-                            fontFamily: 'UberMove',
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              "450",
-                              style: TextStyle(
-                                fontSize: 23,
-                                fontWeight: FontWeight.w700,
-                                fontFamily: 'UberMove',
-                                color: Colors.orange,
-                              ),
+                    Consumer<User>(builder: (context, user, child) {
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Buna ${user.user.username}!',
+                            style: const TextStyle(
+                              fontSize: 23,
+                              fontWeight: FontWeight.w700,
+                              fontFamily: 'UberMove',
                             ),
-                            Icon(Icons.star, color: Colors.orange),
-                          ],
-                        ),
-                      ],
-                    ),
+                          ),
+                          const Row(
+                            children: [
+                              Text(
+                                "450",
+                                style: TextStyle(
+                                  fontSize: 23,
+                                  fontWeight: FontWeight.w700,
+                                  fontFamily: 'UberMove',
+                                  color: Colors.orange,
+                                ),
+                              ),
+                              Icon(Icons.star, color: Colors.orange),
+                            ],
+                          ),
+                        ],
+                      );
+                    }),
                     const SizedBox(height: 20),
                     Container(
                       height: 100,

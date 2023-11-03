@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:tony/components/TransactionPreview.dart';
 import 'package:tony/pages/TransactionsPage.dart';
+import 'package:tony/pages/onboarding/LoginPage.dart';
+
+import '../providers/user.dart';
 
 class ProfilePage extends StatefulWidget {
   final List<String> pastTransactions;
@@ -134,29 +138,40 @@ class _ProfilePageState extends State<ProfilePage> {
               const SizedBox(
                 height: 25,
               ),
-              Container(
-                decoration: BoxDecoration(
-                    color: Colors.grey[200],
-                    borderRadius: BorderRadius.circular(10)),
-                child: const Padding(
-                  padding: EdgeInsets.all(15.0),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.logout_rounded,
-                        color: Colors.red,
-                      ),
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Text(
-                        'Delogheaza-te',
-                        style: TextStyle(
-                            fontFamily: 'UberMove',
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700),
-                      ),
-                    ],
+              GestureDetector(
+                onTap: () {
+                  final user = Provider.of<User>(context, listen: false);
+                  user.logout();
+
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LoginPage()));
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      borderRadius: BorderRadius.circular(10)),
+                  child: const Padding(
+                    padding: EdgeInsets.all(15.0),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.logout_rounded,
+                          color: Colors.red,
+                        ),
+                        SizedBox(
+                          width: 15,
+                        ),
+                        Text(
+                          'Deconectare',
+                          style: TextStyle(
+                              fontFamily: 'UberMove',
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
