@@ -27,3 +27,7 @@ Map<String, String> authHeader(String token) {
     'Authorization': token,
   };
 }
+
+String getProductImageURL(String productID, String token) {
+  return '${AppURL.baseURL}/products/product/image?productID=$productID&token=$token';
+}

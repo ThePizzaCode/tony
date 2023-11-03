@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_barcodes/barcodes.dart';
 import 'package:tony/components/ProductPreview.dart';
-import 'package:tony/providers/user.dart';
+import 'package:tony/utils/url.dart';
+
+import '../providers/user.dart';
+import '../providers/products.dart';
+import '../providers/wallet.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -12,6 +16,25 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  String walletID = '';
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      final wallet = Provider.of<Wallet>(context, listen: false);
+      final user = Provider.of<User>(context, listen: false);
+      final products = Provider.of<Products>(context, listen: false);
+
+      walletID = user.user.walletID;
+
+      await wallet.getBalance(user.token);
+      await products.getProducts(user.token);
+
+      products.sortProductsTag("rec");
+    });
+
+    super.initState();
+  }
+
   void _openBottomSheet(BuildContext context) {
     showModalBottomSheet(
       shape: const RoundedRectangleBorder(
@@ -19,7 +42,7 @@ class _HomePageState extends State<HomePage> {
               topLeft: Radius.circular(20), topRight: Radius.circular(20))),
       context: context,
       isScrollControlled: true,
-      builder: (BuildContext context) {
+      builder: (context) {
         return Container(
           height: 250,
           padding: const EdgeInsets.all(20.0),
@@ -53,7 +76,7 @@ class _HomePageState extends State<HomePage> {
               SizedBox(
                 height: 100,
                 child: SfBarcodeGenerator(
-                  value: "111111",
+                  value: '01$walletID',
                   showValue: true,
                   symbology: Code128(),
                   textStyle: const TextStyle(
@@ -88,34 +111,36 @@ class _HomePageState extends State<HomePage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Consumer<User>(builder: (context, user, child) {
-                      return Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Buna ${user.user.username}!',
-                            style: const TextStyle(
-                              fontSize: 23,
-                              fontWeight: FontWeight.w700,
-                              fontFamily: 'UberMove',
-                            ),
-                          ),
-                          const Row(
-                            children: [
-                              Text(
-                                "450",
-                                style: TextStyle(
-                                  fontSize: 23,
-                                  fontWeight: FontWeight.w700,
-                                  fontFamily: 'UberMove',
-                                  color: Colors.orange,
-                                ),
+                    Consumer<Wallet>(builder: (context, wallet, child) {
+                      return Consumer<User>(builder: (context, user, child) {
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Buna, ${user.user.username}!',
+                              style: const TextStyle(
+                                fontSize: 23,
+                                fontWeight: FontWeight.w700,
+                                fontFamily: 'UberMove',
                               ),
-                              Icon(Icons.star, color: Colors.orange),
-                            ],
-                          ),
-                        ],
-                      );
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  '${wallet.balance}',
+                                  style: const TextStyle(
+                                    fontSize: 23,
+                                    fontWeight: FontWeight.w700,
+                                    fontFamily: 'UberMove',
+                                    color: Colors.orange,
+                                  ),
+                                ),
+                                const Icon(Icons.star, color: Colors.orange),
+                              ],
+                            ),
+                          ],
+                        );
+                      });
                     }),
                     const SizedBox(height: 20),
                     Container(
@@ -138,24 +163,27 @@ class _HomePageState extends State<HomePage> {
                     const SizedBox(height: 15),
 
                     // Add the grid here
-                    GridView.count(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 15,
-                      mainAxisSpacing: 15,
-                      childAspectRatio: childAspectRatio,
-                      shrinkWrap: true,
-                      physics:
-                          const NeverScrollableScrollPhysics(), // Disable scrolling within GridView
-                      children: const [
-                        // Add your grid items here
-                        ProductPreview(title: "Cafe Late", price: "500"),
-                        ProductPreview(title: "Late Machiato", price: "2000"),
-                        ProductPreview(title: "Cafe Late", price: "500"),
-                        ProductPreview(title: "Cafe Late", price: "500"),
-                        ProductPreview(title: "Cafe Late", price: "500"),
-                        // Add more grid items as needed
-                      ],
-                    ),
+                    Consumer<User>(builder: (context, user, child) {
+                      return Consumer<Products>(
+                          builder: (context, products, child) {
+                        return GridView.count(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 15,
+                          mainAxisSpacing: 15,
+                          childAspectRatio: childAspectRatio,
+                          shrinkWrap: true,
+                          physics:
+                              const NeverScrollableScrollPhysics(), // Disable scrolling within GridView
+                          children: (products.sortedProducts)
+                              .map((sp) => ProductPreview(
+                                  title: sp.title,
+                                  desc: sp.desc,
+                                  price: sp.price.toString(),
+                                  image: getProductImageURL(sp.id, user.token)))
+                              .toList(),
+                        );
+                      });
+                    }),
                     const SizedBox(
                       height: 10,
                     ),

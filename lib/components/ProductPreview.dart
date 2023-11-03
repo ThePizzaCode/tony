@@ -1,28 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:tony/env/env.dart';
 import 'package:tony/pages/ProductPage.dart';
+import 'package:tony/providers/user.dart';
+import 'package:tony/utils/url.dart';
 
 class ProductPreview extends StatelessWidget {
   final String title;
-  final String description;
-  final NetworkImage? image;
+  final String desc;
+  final String image;
   final String price;
   const ProductPreview(
       {required this.title,
-      this.description =
-          'fgsdgdhfgdsmgnfjgdnkfng,.dkfsngbd,nmksf.jgbnfmsa,jgdbns,fgdbn,mfsgbdn,sfjbgdhs,jfndfgdsls',
+      required this.desc,
 
       ///Placeholder, delete before deploy
-      this.image,
+      required this.image,
       required this.price,
       super.key});
 
   @override
   Widget build(BuildContext context) {
-    String shortenedDescription = description;
-    if (description.length > maxLenghtProductPreviewDescription) {
+    String shortenedDescription = desc;
+    if (desc.length > maxLenghtProductPreviewDescription) {
       shortenedDescription =
-          '${description.substring(0, maxLenghtProductPreviewDescription)}...';
+          '${desc.substring(0, maxLenghtProductPreviewDescription)}...';
     }
 
     return GestureDetector(
@@ -51,18 +53,23 @@ class ProductPreview extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(5.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        image: const DecorationImage(
-                          image: AssetImage('assets/images/product1.jpg'),
-                          fit: BoxFit.cover,
-                        )),
-                    height: 115,
-                  ),
-                ),
+                Consumer<User>(builder: (context, user, child) {
+                  return Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          image: DecorationImage(
+                            image: image != ''
+                                ? NetworkImage(image)
+                                : NetworkImage(
+                                    getProductImageURL('0', user.token)),
+                            fit: BoxFit.cover,
+                          )),
+                      height: 115,
+                    ),
+                  );
+                }),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Column(

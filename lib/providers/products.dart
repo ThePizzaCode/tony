@@ -8,6 +8,7 @@ import '../models/product_model.dart';
 
 class Products with ChangeNotifier {
   List<ProductModel> products = [];
+  List<ProductModel> sortedProducts = [];
 
   bool loading = true;
   String errorMessage = '';
@@ -26,16 +27,18 @@ class Products with ChangeNotifier {
 
     final body = json.decode(response.body);
     if (response.statusCode == 200) {
+      products = [];
       for (int i = 0; i < body.length; i++) {
         products.add(ProductModel.fromJSON(body[i]));
       }
+      notifyListeners();
     } else {
       errorMessage = 'eroare';
       notifyListeners();
     }
   }
 
-  List<ProductModel> sortProductsTag(String tag) {
+  sortProductsTag(String tag) {
     List<ProductModel> res = [];
     for (int i = 0; i < products.length; i++) {
       final p = products[i];
@@ -43,7 +46,8 @@ class Products with ChangeNotifier {
         res.add(p);
       }
     }
-    return res;
+    sortedProducts = res;
+    notifyListeners();
   }
 
   ProductModel getProduct(String id) {

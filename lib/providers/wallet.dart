@@ -25,6 +25,8 @@ class Wallet with ChangeNotifier {
     final body = json.decode(response.body);
     if (response.statusCode == 200) {
       balance = body['balance'];
+
+      notifyListeners();
     } else {
       errorMessage = 'eroare';
       notifyListeners();

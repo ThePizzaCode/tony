@@ -23,41 +23,49 @@ class _MenuPageState extends State<MenuPage> {
     // Define your grid items based on the selected filter
     List<Widget> gridItems = [
       const ProductPreview(
-        title: "Cafe Late",
-        price: "500",
-      ),
-      const ProductPreview(title: "Late Machiato", price: "2000"),
-      const ProductPreview(title: "Sandwich", price: "500"),
-      const ProductPreview(title: "Clatite", price: "500"),
-      const ProductPreview(title: "Hell", price: "500"),
+          title: "Cafe Late", price: "500", desc: '', image: ''),
+      const ProductPreview(
+          title: "Late Machiato", price: "2000", desc: '', image: ''),
+      const ProductPreview(
+          title: "Sandwich", price: "500", desc: '', image: ''),
+      const ProductPreview(title: "Clatite", price: "500", desc: '', image: ''),
+      const ProductPreview(title: "Hell", price: "500", desc: '', image: ''),
       // Your grid items here
     ];
 
     if (selectedFilter == "Populare") {
       // Filter based on the "Populare" filter
       gridItems = [
-        const ProductPreview(title: "Cafe Late", price: "500"),
-        const ProductPreview(title: "Late Machiato", price: "2000"),
-        const ProductPreview(title: "Sandwich", price: "500"),
-        const ProductPreview(title: "Clatite", price: "500"),
-        const ProductPreview(title: "Hell", price: "500"),
+        const ProductPreview(
+            title: "Cafe Late", price: "500", desc: '', image: ''),
+        const ProductPreview(
+            title: "Late Machiato", price: "2000", desc: '', image: ''),
+        const ProductPreview(
+            title: "Sandwich", price: "500", desc: '', image: ''),
+        const ProductPreview(
+            title: "Clatite", price: "500", desc: '', image: ''),
+        const ProductPreview(title: "Hell", price: "500", desc: '', image: ''),
       ];
     } else if (selectedFilter == "Mancare") {
       // Filter based on the "Mancare" filter
       gridItems = [
-        const ProductPreview(title: "Sandwich", price: "500"),
-        const ProductPreview(title: "Clatite", price: "500"),
+        const ProductPreview(
+            title: "Sandwich", price: "500", desc: '', image: ''),
+        const ProductPreview(
+            title: "Clatite", price: "500", desc: '', image: ''),
       ];
     } else if (selectedFilter == "Cafea") {
       // Filter based on the "Cafea" filter
       gridItems = [
-        const ProductPreview(title: "Cafe Late", price: "500"),
-        const ProductPreview(title: "Late Machiato", price: "2000"),
+        const ProductPreview(
+            title: "Cafe Late", price: "500", desc: '', image: ''),
+        const ProductPreview(
+            title: "Late Machiato", price: "2000", desc: '', image: ''),
       ];
     } else if (selectedFilter == "Bauturi") {
       // Filter based on the "Bauturi" filter
       gridItems = [
-        const ProductPreview(title: "Hell", price: "500"),
+        const ProductPreview(title: "Hell", price: "500", desc: '', image: ''),
       ];
     }
 

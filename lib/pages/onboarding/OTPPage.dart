@@ -8,6 +8,7 @@ import '../../env/env.dart';
 
 import 'package:provider/provider.dart';
 import '../../providers/user.dart';
+import '../../providers/wallet.dart';
 
 class OTPPage extends StatefulWidget {
   const OTPPage({super.key});
@@ -55,11 +56,14 @@ class _OTPPageState extends State<OTPPage> {
                     style: const TextStyle(fontSize: 17),
                     textFieldAlignment: MainAxisAlignment.spaceAround,
                     fieldStyle: FieldStyle.underline,
-                    onCompleted: (code) {
-                      var user = Provider.of<User>(context, listen: false);
+                    onCompleted: (code) async {
+                      final user = Provider.of<User>(context, listen: false);
+                      final wallet =
+                          Provider.of<Wallet>(context, listen: false);
 
                       if (user.check) {
-                        user.loginCode(code);
+                        await user.loginCode(code);
+                        wallet.getBalance(user.token);
 
                         if (user.errorMessage == '') {
                           Navigator.push(
@@ -70,7 +74,7 @@ class _OTPPageState extends State<OTPPage> {
                               ));
                         }
                       } else {
-                        user.signupCode(code);
+                        await user.signupCode(code);
 
                         if (user.errorMessage == '') {
                           Navigator.push(
