@@ -7,6 +7,7 @@ import 'package:tony/utils/url.dart';
 import '../providers/user.dart';
 import '../providers/products.dart';
 import '../providers/wallet.dart';
+import '../utils/wallet.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -76,7 +77,7 @@ class _HomePageState extends State<HomePage> {
               SizedBox(
                 height: 100,
                 child: SfBarcodeGenerator(
-                  value: '01$walletID',
+                  value: sendWalletID(walletID),
                   showValue: true,
                   symbology: Code128(),
                   textStyle: const TextStyle(

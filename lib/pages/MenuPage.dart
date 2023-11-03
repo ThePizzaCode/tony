@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:tony/components/MenuFilterButton.dart';
 import 'package:tony/components/ProductPreview.dart';
+
+import '../providers/products.dart';
+import '../providers/user.dart';
+
+import '../utils/url.dart';
 
 class MenuPage extends StatefulWidget {
   const MenuPage({super.key});
@@ -10,9 +16,11 @@ class MenuPage extends StatefulWidget {
 }
 
 class _MenuPageState extends State<MenuPage> {
-  String selectedFilter = "Populare"; // Default filter
+  String selectedFilter = "rec"; // Default filter
 
   void setFilter(String filter) {
+    final products = Provider.of<Products>(context, listen: false);
+    products.sortProductsTag(filter);
     setState(() {
       selectedFilter = filter;
     });
@@ -20,55 +28,6 @@ class _MenuPageState extends State<MenuPage> {
 
   @override
   Widget build(BuildContext context) {
-    // Define your grid items based on the selected filter
-    List<Widget> gridItems = [
-      const ProductPreview(
-          title: "Cafe Late", price: "500", desc: '', image: ''),
-      const ProductPreview(
-          title: "Late Machiato", price: "2000", desc: '', image: ''),
-      const ProductPreview(
-          title: "Sandwich", price: "500", desc: '', image: ''),
-      const ProductPreview(title: "Clatite", price: "500", desc: '', image: ''),
-      const ProductPreview(title: "Hell", price: "500", desc: '', image: ''),
-      // Your grid items here
-    ];
-
-    if (selectedFilter == "Populare") {
-      // Filter based on the "Populare" filter
-      gridItems = [
-        const ProductPreview(
-            title: "Cafe Late", price: "500", desc: '', image: ''),
-        const ProductPreview(
-            title: "Late Machiato", price: "2000", desc: '', image: ''),
-        const ProductPreview(
-            title: "Sandwich", price: "500", desc: '', image: ''),
-        const ProductPreview(
-            title: "Clatite", price: "500", desc: '', image: ''),
-        const ProductPreview(title: "Hell", price: "500", desc: '', image: ''),
-      ];
-    } else if (selectedFilter == "Mancare") {
-      // Filter based on the "Mancare" filter
-      gridItems = [
-        const ProductPreview(
-            title: "Sandwich", price: "500", desc: '', image: ''),
-        const ProductPreview(
-            title: "Clatite", price: "500", desc: '', image: ''),
-      ];
-    } else if (selectedFilter == "Cafea") {
-      // Filter based on the "Cafea" filter
-      gridItems = [
-        const ProductPreview(
-            title: "Cafe Late", price: "500", desc: '', image: ''),
-        const ProductPreview(
-            title: "Late Machiato", price: "2000", desc: '', image: ''),
-      ];
-    } else if (selectedFilter == "Bauturi") {
-      // Filter based on the "Bauturi" filter
-      gridItems = [
-        const ProductPreview(title: "Hell", price: "500", desc: '', image: ''),
-      ];
-    }
-
     final childAspectRatio = MediaQuery.of(context).size.width / (2 * 350);
     return Scaffold(
       body: Padding(
@@ -94,23 +53,18 @@ class _MenuPageState extends State<MenuPage> {
                       children: [
                         MenuFilterButton(
                           text: "Populare",
-                          isSelected: selectedFilter == "Populare",
-                          onTap: () => setFilter("Populare"),
-                        ),
-                        MenuFilterButton(
-                          text: "Mancare",
-                          isSelected: selectedFilter == "Mancare",
-                          onTap: () => setFilter("Mancare"),
+                          isSelected: selectedFilter == "rec",
+                          onTap: () => setFilter("rec"),
                         ),
                         MenuFilterButton(
                           text: "Cafea",
-                          isSelected: selectedFilter == "Cafea",
-                          onTap: () => setFilter("Cafea"),
+                          isSelected: selectedFilter == "cafea",
+                          onTap: () => setFilter("cafea"),
                         ),
                         MenuFilterButton(
                           text: "Bauturi",
-                          isSelected: selectedFilter == "Bauturi",
-                          onTap: () => setFilter("Bauturi"),
+                          isSelected: selectedFilter == "suc",
+                          onTap: () => setFilter("suc"),
                         ),
                       ],
                     ),
@@ -118,17 +72,28 @@ class _MenuPageState extends State<MenuPage> {
                   const SizedBox(height: 20),
 
                   // Add the grid here
-                  Expanded(
-                    child: GridView.count(
-                      crossAxisCount: 2, // 2 columns
-                      crossAxisSpacing: 15,
-                      mainAxisSpacing: 15,
-                      childAspectRatio:
-                          childAspectRatio, // You can adjust this ratio as needed
+                  Consumer<User>(builder: (context, user, child) {
+                    return Consumer<Products>(
+                        builder: (context, products, child) {
+                      return Expanded(
+                        child: GridView.count(
+                          crossAxisCount: 2, // 2 columns
+                          crossAxisSpacing: 15,
+                          mainAxisSpacing: 15,
+                          childAspectRatio:
+                              childAspectRatio, // You can adjust this ratio as needed
 
-                      children: gridItems,
-                    ),
-                  ),
+                          children: (products.sortedProducts)
+                              .map((sp) => ProductPreview(
+                                  title: sp.title,
+                                  desc: sp.desc,
+                                  price: sp.price.toString(),
+                                  image: getProductImageURL(sp.id, user.token)))
+                              .toList(),
+                        ),
+                      );
+                    });
+                  }),
                 ],
               ),
             ],
