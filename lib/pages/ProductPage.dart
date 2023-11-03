@@ -10,6 +10,7 @@ class ProductPage extends StatelessWidget {
   Widget build(BuildContext context) {
     const itemCounter = 3;
     return Scaffold(
+      appBar: AppBar(),
       body: Stack(
         children: [
           // Photo section (half the screen)
@@ -51,7 +52,7 @@ class ProductPage extends StatelessWidget {
           DraggableScrollableSheet(
             initialChildSize: .40,
             minChildSize: .40,
-            maxChildSize: .7,
+            maxChildSize: .65,
             builder: (BuildContext context, ScrollController scrollController) {
               return SingleChildScrollView(
                 child: Container(

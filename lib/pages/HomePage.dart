@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:screen_brightness/screen_brightness.dart';
 import 'package:syncfusion_flutter_barcodes/barcodes.dart';
 import 'package:tony/components/ProductPreview.dart';
 import 'package:tony/utils/url.dart';
@@ -34,6 +35,20 @@ class _HomePageState extends State<HomePage> {
     });
 
     super.initState();
+  }
+
+  double previousBrightness = 0.5;
+  void increaseBrightness() async {
+    previousBrightness = await ScreenBrightness().current;
+    double newBrightness = 1; // You can adjust the increment as needed
+
+    // Ensure the new brightness is within the valid range (0.0 to 1.0)
+
+    await ScreenBrightness().setScreenBrightness(newBrightness);
+  }
+
+  void restoreBrightness() async {
+    await ScreenBrightness().setScreenBrightness(previousBrightness);
   }
 
   void _openBottomSheet(BuildContext context) {
@@ -94,7 +109,7 @@ class _HomePageState extends State<HomePage> {
           ),
         );
       },
-    );
+    ).whenComplete(() => restoreBrightness());
   }
 
   @override
@@ -199,6 +214,7 @@ class _HomePageState extends State<HomePage> {
                   child: GestureDetector(
                     onTap: () {
                       _openBottomSheet(context);
+                      increaseBrightness();
                     },
                     child: Container(
                       decoration: BoxDecoration(

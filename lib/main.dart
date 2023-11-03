@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tony/components/NavBar.dart';
+import 'package:tony/pages/ProductPage.dart';
+import 'package:tony/pages/ProductPageTest.dart';
 import 'package:tony/pages/SplashScreenPage.dart';
+import 'package:flutter/services.dart';
 // import 'package:tony/components/NavBar.dart';
 
 // providers
@@ -11,6 +15,18 @@ import './providers/transactions.dart';
 import './providers/order.dart';
 
 void main() {
+  //Fixes system navbar color
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      systemStatusBarContrastEnforced: true,
+      systemNavigationBarColor: Colors.transparent,
+      systemNavigationBarDividerColor: Colors.transparent,
+      systemNavigationBarIconBrightness: Brightness.dark,
+      statusBarIconBrightness: Brightness.dark));
+
+//Setting SystmeUIMode
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge,
+      overlays: [SystemUiOverlay.top]);
+
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (_) => User()),
     ChangeNotifierProvider(create: (_) => Products()),
@@ -27,6 +43,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-        debugShowCheckedModeBanner: false, home: SplashScreen());
+        debugShowCheckedModeBanner: false,
+        home: NavBar(
+          pageIndex: 0,
+        ));
   }
 }

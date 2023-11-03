@@ -39,11 +39,15 @@ class _LoginPageState extends State<LoginPage> {
                           children: [
                             Text(
                                 style: TextStyle(
-                                    fontSize: 40, fontWeight: FontWeight.bold),
+                                    fontSize: 40,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'UberMove'),
                                 "Bine ai venit"),
                             Text(
                                 style: TextStyle(
-                                    fontSize: 40, fontWeight: FontWeight.bold),
+                                    fontSize: 40,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'UberMove'),
                                 "la Tony's"),
                           ],
                         ),
@@ -53,7 +57,7 @@ class _LoginPageState extends State<LoginPage> {
                       height: 10,
                     ),
                     const Text(
-                        style: TextStyle(fontSize: 15),
+                        style: TextStyle(fontSize: 15, fontFamily: 'UberMove'),
                         "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout."),
                     const SizedBox(
                       height: 30,
@@ -94,7 +98,9 @@ class _LoginPageState extends State<LoginPage> {
                       height: 10,
                     ),
                     const Text(
-                        "Prin continuare esti de acord cu termenii si conditiile."),
+                      "Prin continuare esti de acord cu termenii si conditiile.",
+                      style: TextStyle(fontFamily: 'UberMove'),
+                    ),
                   ],
                 ),
               ),
