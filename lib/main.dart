@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tony/components/NavBar.dart';
-import 'package:tony/pages/ProductPage.dart';
-import 'package:tony/pages/ProductPageTest.dart';
-import 'package:tony/pages/SplashScreenPage.dart';
 import 'package:flutter/services.dart';
-// import 'package:tony/components/NavBar.dart';
+import 'package:tony/pages/SplashScreenPage.dart';
 
 // providers
 import './providers/user.dart';
@@ -16,9 +12,9 @@ import './providers/order.dart';
 
 void main() {
   //Fixes system navbar color
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       systemStatusBarContrastEnforced: true,
-      systemNavigationBarColor: Colors.transparent,
+      systemNavigationBarColor: Colors.white,
       systemNavigationBarDividerColor: Colors.transparent,
       systemNavigationBarIconBrightness: Brightness.dark,
       statusBarIconBrightness: Brightness.dark));
@@ -43,9 +39,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: NavBar(
-          pageIndex: 0,
-        ));
+        debugShowCheckedModeBanner: false, home: SplashScreen());
   }
 }

@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+// import 'package:intl/intl.dart';
 
 class TransactionPreview extends StatelessWidget {
-  final DateTime date;
-  final int noOfProducts;
+  final String date;
   final int price;
+
   const TransactionPreview({
     required this.date,
-    required this.noOfProducts,
     required this.price,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    String formattedDate = DateFormat('dd MMMM').format(date);
+    // String formattedDate = DateFormat('dd MMMM').format(date);
 
     return Column(
       children: [
@@ -25,7 +24,7 @@ class TransactionPreview extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  formattedDate,
+                  date,
                   style: const TextStyle(
                       fontFamily: 'UberMove',
                       fontSize: 14,

@@ -9,6 +9,16 @@ import '../models/product_model.dart';
 class Products with ChangeNotifier {
   List<ProductModel> products = [];
   List<ProductModel> sortedProducts = [];
+  ProductModel product = ProductModel(
+      id: '',
+      title: '',
+      desc: '',
+      variants: {},
+      options: {},
+      storeID: '',
+      price: 0,
+      stock: true,
+      tags: []);
 
   bool loading = true;
   String errorMessage = '';
@@ -50,13 +60,14 @@ class Products with ChangeNotifier {
     notifyListeners();
   }
 
-  ProductModel getProduct(String id) {
+  getProduct(String id) {
     for (int i = 0; i < products.length; i++) {
       final p = products[i];
       if (p.id == id) {
-        return p;
+        product = p;
       }
     }
+    notifyListeners();
     throw Exception('product not found');
   }
 }

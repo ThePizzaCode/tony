@@ -27,9 +27,7 @@ class _NavBarState extends State<NavBar> {
   final List<Widget> _screens = [
     const HomePage(),
     const MenuPage(),
-    const ProfilePage(
-      pastTransactions: ['fd', 'fsd', 'gd', 'gds'],
-    ),
+    const ProfilePage(),
   ];
 
   @override

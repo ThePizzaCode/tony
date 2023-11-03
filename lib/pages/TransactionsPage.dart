@@ -27,10 +27,9 @@ class TransactionsPage extends StatelessWidget {
                   children: [
                     TransactionPreview(
                       price: 1000,
-                      noOfProducts: 1,
-                      date: DateTime.now(),
+                      date: 'now',
                     ),
-                    const Divider(
+                    Divider(
                       color: Color(0xFFCCCCCC),
                     ),
                   ],

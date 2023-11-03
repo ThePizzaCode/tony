@@ -25,6 +25,7 @@ class Transactions with ChangeNotifier {
 
     final body = json.decode(response.body);
     if (response.statusCode == 200) {
+      transactions = [];
       for (int i = 0; i < body.length; i++) {
         transactions.add(TransactionModel.fromJSON(body[i]));
       }

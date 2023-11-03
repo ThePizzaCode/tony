@@ -85,6 +85,7 @@ class _MenuPageState extends State<MenuPage> {
 
                           children: (products.sortedProducts)
                               .map((sp) => ProductPreview(
+                                  productID: sp.id,
                                   title: sp.title,
                                   desc: sp.desc,
                                   price: sp.price.toString(),

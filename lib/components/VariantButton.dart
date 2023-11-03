@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:tony/env/env.dart';
 
 class VariantButton extends StatelessWidget {
-  const VariantButton({super.key});
+  final String variant;
+  final int price;
+
+  const VariantButton({required this.variant, required this.price, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,15 +13,15 @@ class VariantButton extends StatelessWidget {
       width: MediaQuery.of(context).size.width / 2 - 35,
       decoration: BoxDecoration(
           color: lightGrey, borderRadius: BorderRadius.circular(10)),
-      child: const Padding(
-        padding: EdgeInsets.only(left: 10.0),
+      child: Padding(
+        padding: const EdgeInsets.only(left: 10.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Mediu',
-              style: TextStyle(
+              variant,
+              style: const TextStyle(
                   fontSize: 20,
                   fontFamily: 'UberMove',
                   fontWeight: FontWeight.w700),
@@ -26,13 +29,13 @@ class VariantButton extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  '+500',
-                  style: TextStyle(
+                  '+${price.toString()}',
+                  style: const TextStyle(
                       fontSize: 13,
                       fontFamily: 'UberMove',
                       fontWeight: FontWeight.w500),
                 ),
-                Icon(
+                const Icon(
                   Icons.star_rounded,
                   color: tonyOrange,
                 )

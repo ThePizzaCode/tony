@@ -10,7 +10,7 @@ class ProductPage extends StatelessWidget {
   Widget build(BuildContext context) {
     const itemCounter = 3;
     return Scaffold(
-      appBar: AppBar(),
+      // appBar: AppBar(),
       body: Stack(
         children: [
           // Photo section (half the screen)
@@ -67,7 +67,7 @@ class ProductPage extends StatelessWidget {
                     controller: scrollController,
                     shrinkWrap: true,
                     children: [
-                      Padding(
+                      const Padding(
                         padding: const EdgeInsets.all(30),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -118,28 +118,28 @@ class ProductPage extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(height: 15),
-                            SizedBox(
-                              height: 60,
-                              child: ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                physics: const ClampingScrollPhysics(),
-                                itemCount: itemCounter,
-                                itemBuilder: (context, index) {
-                                  if (index == 1 && itemCounter == 2) {
-                                    return const VariantButton();
-                                  } else {
-                                    return const Padding(
-                                      padding: EdgeInsets.only(right: 10.0),
-                                      child: VariantButton(),
-                                    );
-                                  }
-                                },
-                              ),
-                            ),
-                            const SizedBox(height: 20),
-                            const OptionElement(
-                              name: 'Arome Disponibile',
-                            ),
+                            // SizedBox(
+                            //   height: 60,
+                            //   child: ListView.builder(
+                            //     scrollDirection: Axis.horizontal,
+                            //     physics: const ClampingScrollPhysics(),
+                            //     itemCount: itemCounter,
+                            //     itemBuilder: (context, index) {
+                            //       if (index == 1 && itemCounter == 2) {
+                            //         return const VariantButton();
+                            //       } else {
+                            //         return const Padding(
+                            //           padding: EdgeInsets.only(right: 10.0),
+                            //           child: VariantButton(),
+                            //         );
+                            //       }
+                            //     },
+                            //   ),
+                            // ),
+                            // const SizedBox(height: 20),
+                            // const OptionElement(
+                            //   name: 'Arome Disponibile',
+                            // ),
                           ],
                         ),
                       ),

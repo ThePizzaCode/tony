@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tony/env/env.dart';
-import 'package:tony/pages/ProductPage.dart';
+// import 'package:tony/pages/ProductPage.dart';
+import 'package:tony/pages/ProductPageTest.dart';
+
 import 'package:tony/providers/user.dart';
 import 'package:tony/utils/url.dart';
 
@@ -10,6 +12,7 @@ class ProductPreview extends StatelessWidget {
   final String desc;
   final String image;
   final String price;
+  final String productID;
   const ProductPreview(
       {required this.title,
       required this.desc,
@@ -17,6 +20,7 @@ class ProductPreview extends StatelessWidget {
       ///Placeholder, delete before deploy
       required this.image,
       required this.price,
+      required this.productID,
       super.key});
 
   @override
@@ -31,7 +35,10 @@ class ProductPreview extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const ProductPage()),
+          MaterialPageRoute(
+              builder: (context) => ProductPageTest(
+                    productID: productID,
+                  )),
         );
       },
       child: Container(

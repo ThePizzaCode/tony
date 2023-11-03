@@ -109,7 +109,12 @@ class _HomePageState extends State<HomePage> {
           ),
         );
       },
-    ).whenComplete(() => restoreBrightness());
+    ).whenComplete(() async {
+      restoreBrightness();
+      final user = Provider.of<User>(context, listen: false);
+      final wallet = Provider.of<Wallet>(context, listen: false);
+      await wallet.getBalance(user.token);
+    });
   }
 
   @override
@@ -192,6 +197,7 @@ class _HomePageState extends State<HomePage> {
                               const NeverScrollableScrollPhysics(), // Disable scrolling within GridView
                           children: (products.sortedProducts)
                               .map((sp) => ProductPreview(
+                                  productID: sp.id,
                                   title: sp.title,
                                   desc: sp.desc,
                                   price: sp.price.toString(),
