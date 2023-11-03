@@ -40,10 +40,7 @@ class _HomePageState extends State<HomePage> {
   double previousBrightness = 0.5;
   void increaseBrightness() async {
     previousBrightness = await ScreenBrightness().current;
-    double newBrightness = 1; // You can adjust the increment as needed
-
-    // Ensure the new brightness is within the valid range (0.0 to 1.0)
-
+    double newBrightness = 1;
     await ScreenBrightness().setScreenBrightness(newBrightness);
   }
 
@@ -127,93 +124,88 @@ class _HomePageState extends State<HomePage> {
         child: SafeArea(
           child: Stack(
             children: [
-              SingleChildScrollView(
-                // Wrap the Column with SingleChildScrollView
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Consumer<Wallet>(builder: (context, wallet, child) {
-                      return Consumer<User>(builder: (context, user, child) {
-                        return Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Buna, ${user.user.username}!',
-                              style: const TextStyle(
-                                fontSize: 23,
-                                fontWeight: FontWeight.w700,
-                                fontFamily: 'UberMove',
-                              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Consumer<Wallet>(builder: (context, wallet, child) {
+                    return Consumer<User>(builder: (context, user, child) {
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Buna, ${user.user.username}!',
+                            style: const TextStyle(
+                              fontSize: 23,
+                              fontWeight: FontWeight.w700,
+                              fontFamily: 'UberMove',
                             ),
-                            Row(
-                              children: [
-                                Text(
-                                  '${wallet.balance}',
-                                  style: const TextStyle(
-                                    fontSize: 23,
-                                    fontWeight: FontWeight.w700,
-                                    fontFamily: 'UberMove',
-                                    color: Colors.orange,
-                                  ),
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                '${wallet.balance}',
+                                style: const TextStyle(
+                                  fontSize: 23,
+                                  fontWeight: FontWeight.w700,
+                                  fontFamily: 'UberMove',
+                                  color: Colors.orange,
                                 ),
-                                const Icon(Icons.star, color: Colors.orange),
-                              ],
-                            ),
-                          ],
-                        );
-                      });
-                    }),
-                    const SizedBox(height: 20),
-                    Container(
-                      height: 100,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: Colors.pink[200],
-                      ),
+                              ),
+                              const Icon(Icons.star, color: Colors.orange),
+                            ],
+                          ),
+                        ],
+                      );
+                    });
+                  }),
+                  const SizedBox(height: 20),
+                  Container(
+                    height: 100,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.pink[200],
                     ),
-                    const SizedBox(height: 20),
-                    const Text(
-                      "Recomandate pentru tine",
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w700,
-                        fontFamily: 'UberMove',
-                      ),
+                  ),
+                  const SizedBox(height: 20),
+                  const Text(
+                    "Recomandate pentru tine",
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w700,
+                      fontFamily: 'UberMove',
                     ),
-                    const SizedBox(height: 15),
+                  ),
+                  const SizedBox(height: 15),
 
-                    // Add the grid here
-                    Consumer<User>(builder: (context, user, child) {
-                      return Consumer<Products>(
-                          builder: (context, products, child) {
-                        return GridView.count(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 15,
-                          mainAxisSpacing: 15,
-                          childAspectRatio: childAspectRatio,
-                          shrinkWrap: true,
-                          physics:
-                              const NeverScrollableScrollPhysics(), // Disable scrolling within GridView
-                          children: (products.sortedProducts)
-                              .map((sp) => ProductPreview(
-                                  productID: sp.id,
-                                  title: sp.title,
-                                  desc: sp.desc,
-                                  price: sp.price.toString(),
-                                  image: getProductImageURL(sp.id, user.token)))
-                              .toList(),
-                        );
-                      });
-                    }),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                  ],
-                ),
+                  // Add the grid here
+                  Consumer<User>(builder: (context, user, child) {
+                    return Consumer<Products>(
+                        builder: (context, products, child) {
+                      return GridView.count(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 15,
+                        mainAxisSpacing: 15,
+                        childAspectRatio: childAspectRatio,
+                        shrinkWrap: true,
+                        children: (products.sortedProducts)
+                            .map((sp) => ProductPreview(
+                                productID: sp.id,
+                                title: sp.title,
+                                desc: sp.desc,
+                                price: sp.price.toString(),
+                                image: getProductImageURL(sp.id, user.token)))
+                            .toList(),
+                      );
+                    });
+                  }),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                ],
               ),
               Positioned(
-                bottom: 10,
+                bottom: 20,
                 left: 0,
                 right: 0,
                 child: Center(

@@ -18,12 +18,10 @@ class _PhoneFieldState extends State<PhoneField> {
           keyboardType: TextInputType.phone,
           //must add controller
           cursorColor: Colors.black,
-          style: const TextStyle(
-            fontSize: 22,
-          ),
+          style: const TextStyle(fontSize: 22, fontFamily: 'UberMove'),
           decoration: InputDecoration(
             prefixIcon: Padding(
-              padding: const EdgeInsets.only(bottom: 5, left: 15),
+              padding: const EdgeInsets.only(left: 15),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -37,7 +35,10 @@ class _PhoneFieldState extends State<PhoneField> {
                   ),
                   const Text(
                     "+40 ",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'UberMove'),
                   ),
                 ],
               ),
