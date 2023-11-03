@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class phoneField extends StatefulWidget {
-  const phoneField({super.key});
+class PhoneField extends StatefulWidget {
+  const PhoneField({super.key});
 
   @override
-  State<phoneField> createState() => _phoneFieldState();
+  State<PhoneField> createState() => _PhoneFieldState();
 }
 
-class _phoneFieldState extends State<phoneField> {
+class _PhoneFieldState extends State<PhoneField> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -46,8 +46,8 @@ class _phoneFieldState extends State<phoneField> {
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
-              borderSide:
-                  const BorderSide(color: Colors.grey), // Set focused border color
+              borderSide: const BorderSide(
+                  color: Colors.grey), // Set focused border color
             ),
             hoverColor: Colors.grey, // Set hover color
             filled: false,

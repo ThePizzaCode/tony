@@ -52,7 +52,7 @@ class _LoginPageState extends State<LoginPage> {
                     const SizedBox(
                       height: 30,
                     ),
-                    const phoneField(),
+                    const PhoneField(),
                     const SizedBox(
                       height: 10,
                     ),

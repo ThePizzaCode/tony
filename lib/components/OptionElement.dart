@@ -15,13 +15,13 @@ class OptionElement extends StatelessWidget {
       children: [
         Text(
           name,
-          style: TextStyle(
+          style: const TextStyle(
             fontFamily: 'UberMove',
             fontSize: 20,
             fontWeight: FontWeight.w700,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 15,
         ),
         Container(
@@ -30,11 +30,11 @@ class OptionElement extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
           ),
           child: ListView.builder(
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: 3,
             shrinkWrap: true,
             itemBuilder: (context, index) {
-              return Padding(
+              return const Padding(
                 padding: EdgeInsets.all(10.0),
                 child: Text(
                   'Irish Cream',

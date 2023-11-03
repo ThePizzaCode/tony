@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
 import 'package:tony/env/env.dart';
-import 'package:tony/pages/HomePage.dart';
-import 'package:tony/components/NextButton.dart';
 import 'package:tony/pages/onboarding/NamePage.dart';
 
 class OTPPage extends StatefulWidget {
@@ -74,8 +72,8 @@ class _OTPPageState extends State<OTPPage> {
                     color: tonyOrange,
                     borderRadius: BorderRadius.circular(27),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 15, bottom: 15),
+                  child: const Padding(
+                    padding: EdgeInsets.only(top: 15, bottom: 15),
                     child: Center(
                         child: Text(
                       'Continuă',

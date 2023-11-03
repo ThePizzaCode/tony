@@ -121,15 +121,14 @@ class ProductPage extends StatelessWidget {
                               height: 60,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                physics: ClampingScrollPhysics(),
+                                physics: const ClampingScrollPhysics(),
                                 itemCount: itemCounter,
                                 itemBuilder: (context, index) {
                                   if (index == 1 && itemCounter == 2) {
-                                    return VariantButton();
+                                    return const VariantButton();
                                   } else {
-                                    return Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 10.0),
+                                    return const Padding(
+                                      padding: EdgeInsets.only(right: 10.0),
                                       child: VariantButton(),
                                     );
                                   }
@@ -137,7 +136,7 @@ class ProductPage extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(height: 20),
-                            OptionElement(
+                            const OptionElement(
                               name: 'Arome Disponibile',
                             ),
                           ],

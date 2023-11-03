@@ -38,6 +38,8 @@ dependencies:
   google_nav_bar: ^5.0.6
   syncfusion_flutter_barcodes: ^23.1.42
   intl: ^0.18.1
+  shared_preferences: ^2.2.2
+  http: ^1.1.0
  
 dev_dependencies:
   flutter_test:

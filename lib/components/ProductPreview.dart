@@ -77,7 +77,7 @@ class ProductPreview extends StatelessWidget {
                       ),
                       Text(
                         shortenedDescription,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 13,
                             fontWeight: FontWeight.w500,
                             fontFamily: 'UberMove'),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_barcodes/barcodes.dart';
 import 'package:tony/components/ProductPreview.dart';
-import 'package:tony/env/env.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -142,7 +141,7 @@ class _HomePageState extends State<HomePage> {
                       childAspectRatio: childAspectRatio,
                       shrinkWrap: true,
                       physics:
-                          NeverScrollableScrollPhysics(), // Disable scrolling within GridView
+                          const NeverScrollableScrollPhysics(), // Disable scrolling within GridView
                       children: const [
                         // Add your grid items here
                         ProductPreview(title: "Cafe Late", price: "500"),
@@ -153,7 +152,7 @@ class _HomePageState extends State<HomePage> {
                         // Add more grid items as needed
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                   ],
