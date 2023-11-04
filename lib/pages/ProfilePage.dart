@@ -106,56 +106,52 @@ class _ProfilePageState extends State<ProfilePage> {
                                 borderRadius: BorderRadius.circular(10)),
                             child: Padding(
                               padding: const EdgeInsets.all(15.0),
-                              child: Expanded(
-                                child: ListView.builder(
-                                    shrinkWrap: true,
-                                    physics:
-                                        const NeverScrollableScrollPhysics(),
-                                    itemCount:
-                                        transactions.transactions.length > 3
-                                            ? 4
-                                            : transactions.transactions.length,
-                                    itemBuilder: (context, index) {
-                                      if (index == 3) {
-                                        return Center(
-                                            child: GestureDetector(
-                                          onTap: () {
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      const TransactionsPage()),
-                                            );
-                                          },
-                                          child: Text(
-                                            'Arată mai multe',
-                                            style: TextStyle(
-                                                color: Colors.blue[700],
-                                                fontFamily: 'UberMove',
-                                                fontWeight: FontWeight.w500),
+                              child: ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  itemCount:
+                                      transactions.transactions.length > 3
+                                          ? 4
+                                          : transactions.transactions.length,
+                                  itemBuilder: (context, index) {
+                                    if (index == 3) {
+                                      return Center(
+                                          child: GestureDetector(
+                                        onTap: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const TransactionsPage()),
+                                          );
+                                        },
+                                        child: Text(
+                                          'Arată mai multe',
+                                          style: TextStyle(
+                                              color: Colors.blue[700],
+                                              fontFamily: 'UberMove',
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                      ));
+                                    } else {
+                                      return Column(
+                                        children: [
+                                          TransactionPreview(
+                                            price: transactions
+                                                .transactions[index].value,
+                                            date: transactions
+                                                .transactions[index].date,
                                           ),
-                                        ));
-                                      } else {
-                                        return Column(
-                                          children: [
-                                            TransactionPreview(
-                                              price: transactions
-                                                  .transactions[index].value,
-                                              date: transactions
-                                                  .transactions[index].date,
+                                          if (index <
+                                              transactions.transactions.length -
+                                                  1)
+                                            const Divider(
+                                              color: Color(0xFFCCCCCC),
                                             ),
-                                            if (index <
-                                                transactions
-                                                        .transactions.length -
-                                                    1)
-                                              const Divider(
-                                                color: Color(0xFFCCCCCC),
-                                              ),
-                                          ],
-                                        );
-                                      }
-                                    }),
-                              ),
+                                        ],
+                                      );
+                                    }
+                                  }),
                             ),
                           );
                   }),
