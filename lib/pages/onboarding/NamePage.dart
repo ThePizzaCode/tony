@@ -28,14 +28,14 @@ class _NamePageState extends State<NamePage> {
                 children: [
                   const SizedBox(height: 20),
                   const Text(
-                    "Introdu prenumele tau",
+                    "Introdu prenumele tău",
                     style: TextStyle(fontSize: 30, fontFamily: 'UberMove'),
                   ),
                   const SizedBox(
                     height: 10,
                   ),
                   const Text(
-                    "Il vom folosi pentru a sti cum sa te salutam!",
+                    "Il vom folosi pentru a ști cum să te salutăm :)",
                     style: TextStyle(fontSize: 15, fontFamily: 'UberMove'),
                   ),
                   const SizedBox(

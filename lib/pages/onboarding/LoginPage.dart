@@ -2,13 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:tony/env/env.dart';
 import 'package:tony/pages/onboarding/PhoneNumberPage.dart';
 
-import '../../components/NextButton.dart';
-import '../../components/PhoneField.dart';
-import '../../pages/onboarding/OTPPage.dart';
-
-import 'package:provider/provider.dart';
-import '../../providers/user.dart';
-
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -28,12 +21,12 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Container(
                   height: 300,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage(
                           "assets/images/bg.jpg"), // Use AssetImage to load the image
@@ -77,7 +70,7 @@ class _LoginPageState extends State<LoginPage> {
                       const Text(
                           style:
                               TextStyle(fontSize: 18, fontFamily: 'UberMove'),
-                          "Câștigă puncte cu fiecare achizitie și răsfață-te cu oferte exclusive, cadouri și multe altele. Începeți să sorbiți și să câștigați astăzi!"),
+                          "Câștigă puncte cu fiecare achiziție și răsfață-te cu oferte exclusive, cadouri și multe altele. Începeți să sorbiți și să câștigați astăzi!"),
                       const SizedBox(
                         height: 30,
                       ),

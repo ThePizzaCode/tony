@@ -62,7 +62,7 @@ class _MenuPageState extends State<MenuPage> {
                           onTap: () => setFilter("cafea"),
                         ),
                         MenuFilterButton(
-                          text: "Bauturi",
+                          text: "Băuturi",
                           isSelected: selectedFilter == "suc",
                           onTap: () => setFilter("suc"),
                         ),

@@ -71,7 +71,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     height: 40,
                   ),
                   const Text(
-                    'Tranzactii recente',
+                    'Tranzacții recente',
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w700,
@@ -92,7 +92,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               padding: EdgeInsets.all(15.0),
                               child: Center(
                                 child: Text(
-                                  'Nu exista date de afisat',
+                                  'Nu există date de afișat',
                                   style: TextStyle(
                                       fontFamily: 'UberMove',
                                       fontWeight: FontWeight.w500),
@@ -128,7 +128,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                             );
                                           },
                                           child: Text(
-                                            'Arata mai multe',
+                                            'Arată mai multe',
                                             style: TextStyle(
                                                 color: Colors.blue[700],
                                                 fontFamily: 'UberMove',

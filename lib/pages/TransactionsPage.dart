@@ -16,7 +16,7 @@ class TransactionsPage extends StatelessWidget {
           child: Column(
             children: [
               const Text(
-                'Lista Tranzactii',
+                'Listă tranzacții',
                 style: TextStyle(
                     fontFamily: 'UberMove',
                     fontSize: 20,
@@ -35,7 +35,7 @@ class TransactionsPage extends StatelessWidget {
                           padding: EdgeInsets.all(15.0),
                           child: Center(
                             child: Text(
-                              'Nu exista date de afisat',
+                              'Nu există date de afișat',
                               style: TextStyle(
                                   fontFamily: 'UberMove',
                                   fontWeight: FontWeight.w500),

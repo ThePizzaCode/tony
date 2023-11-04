@@ -65,7 +65,7 @@ class _HomePageState extends State<HomePage> {
               Column(
                 children: [
                   const Text(
-                    "Cardul tau de fidelitate",
+                    "Cardul tău de fidelitate",
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.w700,
@@ -73,7 +73,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   Text(
-                    "Scaneaza inainte de plata ca sa te bucuri de reduceri instant și acumulează puncte de fidelitate.",
+                    "Scanează înainte de plată ca să te bucuri de reduceri instant și acumulează puncte de fidelitate.",
                     style: TextStyle(
                         fontSize: 13,
                         color: Colors.grey[600],
@@ -133,7 +133,7 @@ class _HomePageState extends State<HomePage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Buna, ${user.user.username}!',
+                            'Bună, ${user.user.username}!',
                             style: const TextStyle(
                               fontSize: 23,
                               fontWeight: FontWeight.w700,

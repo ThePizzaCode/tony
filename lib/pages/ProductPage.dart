@@ -95,7 +95,7 @@ class _ProductPageState extends State<ProductPage> {
                         ),
                         const SizedBox(height: 20),
                         const Text(
-                          'Alege marime',
+                          'Mărimi',
                           style: TextStyle(
                             fontFamily: 'UberMove',
                             fontSize: 20,

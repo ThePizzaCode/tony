@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
-import 'package:tony/components/NavBar.dart';
 import 'package:tony/pages/SplashScreenPage.dart';
-import 'package:tony/pages/TransactionsPage.dart';
-import 'package:tony/pages/onboarding/PhoneNumberPage.dart';
 
 // providers
 import './providers/user.dart';

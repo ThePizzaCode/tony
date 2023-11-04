@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tony/pages/onboarding/OTPPage.dart';
-import '../../components/NavBar.dart';
 import '../../components/TextFieldBoxOTP.dart';
 import '../../env/env.dart';
 import '../../providers/user.dart';
@@ -37,7 +36,7 @@ class _PhoneNumberPageState extends State<PhoneNumberPage> {
                     height: 10,
                   ),
                   const Text(
-                    "Iti vom trimite un SMS cu un cod de activare.",
+                    "Iți vom trimite un SMS cu un cod de activare.",
                     style: TextStyle(fontSize: 15, fontFamily: 'UberMove'),
                   ),
                   const SizedBox(
@@ -54,7 +53,7 @@ class _PhoneNumberPageState extends State<PhoneNumberPage> {
               GestureDetector(
                 onTap: () async {
                   var user = Provider.of<User>(context, listen: false);
-                  String phone = '0${phoneFieldController.text}';
+                  String phone = phoneFieldController.text;
 
                   await user.checkUser(phone);
 
