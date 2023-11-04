@@ -44,7 +44,7 @@ class _PhoneNumberPageState extends State<PhoneNumberPage> {
                   ),
                   TextFieldBoxOTP(
                       controller: phoneFieldController,
-                      keyboardType: TextInputType.name),
+                      keyboardType: TextInputType.phone),
                   const SizedBox(
                     height: 30,
                   ),

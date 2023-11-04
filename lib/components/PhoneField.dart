@@ -16,7 +16,6 @@ class _PhoneFieldState extends State<PhoneField> {
         TextField(
           controller: widget.controller,
           keyboardType: TextInputType.phone,
-          //must add controller
           cursorColor: Colors.black,
           style: const TextStyle(fontSize: 22, fontFamily: 'UberMove'),
           decoration: InputDecoration(
