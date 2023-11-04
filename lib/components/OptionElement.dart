@@ -33,22 +33,27 @@ class OptionElement extends StatelessWidget {
                   color: lightGrey,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: ListView.builder(
-                  // physics: const NeverScrollableScrollPhysics(),
-                  itemCount: options.length,
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        options[index].option,
-                        style: const TextStyle(
-                          fontFamily: 'UberMove',
-                          fontSize: 20,
+                child: MediaQuery.removePadding(
+                  removeTop: true,
+                  removeBottom: true,
+                  context: context,
+                  child: ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: options.length,
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text(
+                          options[index].option,
+                          style: const TextStyle(
+                            fontFamily: 'UberMove',
+                            fontSize: 20,
+                          ),
                         ),
-                      ),
-                    );
-                  },
+                      );
+                    },
+                  ),
                 ),
               )
             ]

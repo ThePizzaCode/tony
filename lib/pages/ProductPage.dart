@@ -93,55 +93,72 @@ class _ProductPageState extends State<ProductPage> {
                             fontWeight: FontWeight.w500,
                           ),
                         ),
-                        const SizedBox(height: 20),
-                        const Text(
-                          'Mărimi',
-                          style: TextStyle(
-                            fontFamily: 'UberMove',
-                            fontSize: 20,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        const SizedBox(height: 15),
-                        SizedBox(
-                          height: 60,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            physics: const ClampingScrollPhysics(),
-                            itemCount:
-                                products.product.variants['marime']?.length,
-                            itemBuilder: (context, index) {
-                              if (index == 1 &&
-                                  products.product.variants['marime']?.length ==
-                                      2) {
-                                return VariantButton(
-                                    variant: products
-                                            .product
-                                            .variants['marime']?[index]
-                                            .variant ??
-                                        '',
-                                    price: products.product
-                                            .variants['marime']?[index].price ??
-                                        0);
-                              } else {
-                                return Padding(
-                                  padding: const EdgeInsets.only(right: 10.0),
-                                  child: VariantButton(
-                                      variant: products
-                                              .product
-                                              .variants['marime']?[index]
-                                              .variant ??
-                                          '',
-                                      price: products
-                                              .product
-                                              .variants['marime']?[index]
-                                              .price ??
-                                          0),
-                                );
-                              }
-                            },
-                          ),
-                        ),
+                        products.product.variants['marime']?.length != 0
+                            ? Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const SizedBox(height: 20),
+                                  const Text(
+                                    'Mărimi',
+                                    style: TextStyle(
+                                      fontFamily: 'UberMove',
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 15),
+                                  SizedBox(
+                                    height: 60,
+                                    child: ListView.builder(
+                                      scrollDirection: Axis.horizontal,
+                                      physics: const ClampingScrollPhysics(),
+                                      itemCount: products
+                                          .product.variants['marime']?.length,
+                                      itemBuilder: (context, index) {
+                                        if (index == 1 &&
+                                            products.product.variants['marime']
+                                                    ?.length ==
+                                                2) {
+                                          return VariantButton(
+                                              variant: products
+                                                      .product
+                                                      .variants['marime']
+                                                          ?[index]
+                                                      .variant ??
+                                                  '',
+                                              price: products
+                                                      .product
+                                                      .variants['marime']
+                                                          ?[index]
+                                                      .price ??
+                                                  0);
+                                        } else {
+                                          return Padding(
+                                            padding: const EdgeInsets.only(
+                                                right: 10.0),
+                                            child: VariantButton(
+                                                variant: products
+                                                        .product
+                                                        .variants['marime']
+                                                            ?[index]
+                                                        .variant ??
+                                                    '',
+                                                price: products
+                                                        .product
+                                                        .variants['marime']
+                                                            ?[index]
+                                                        .price ??
+                                                    0),
+                                          );
+                                        }
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              )
+                            : SizedBox(
+                                height: 2,
+                              ),
                         const SizedBox(height: 20),
                         OptionElement(
                             name: 'Arome',
