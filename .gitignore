@@ -45,3 +45,4 @@ app.*.map.json
 
 #Others
 lib/env/keys.dart
+/android/key.properties

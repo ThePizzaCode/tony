@@ -1,4 +1,4 @@
-package com.example.tony
+package tech.tonyapp.tony
 
 import io.flutter.embedding.android.FlutterActivity
 
