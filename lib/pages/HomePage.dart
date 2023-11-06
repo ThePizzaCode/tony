@@ -182,20 +182,22 @@ class _HomePageState extends State<HomePage> {
                   Consumer<User>(builder: (context, user, child) {
                     return Consumer<Products>(
                         builder: (context, products, child) {
-                      return GridView.count(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 15,
-                        mainAxisSpacing: 15,
-                        childAspectRatio: childAspectRatio,
-                        shrinkWrap: true,
-                        children: (products.sortedProducts)
-                            .map((sp) => ProductPreview(
-                                productID: sp.id,
-                                title: sp.title,
-                                desc: sp.desc,
-                                price: sp.price.toString(),
-                                image: getProductImageURL(sp.id, user.token)))
-                            .toList(),
+                      return Expanded(
+                        child: GridView.count(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 15,
+                          mainAxisSpacing: 15,
+                          childAspectRatio: childAspectRatio,
+                          shrinkWrap: true,
+                          children: (products.sortedProducts)
+                              .map((sp) => ProductPreview(
+                                  productID: sp.id,
+                                  title: sp.title,
+                                  desc: sp.desc,
+                                  price: sp.price.toString(),
+                                  image: getProductImageURL(sp.id, user.token)))
+                              .toList(),
+                        ),
                       );
                     });
                   }),
