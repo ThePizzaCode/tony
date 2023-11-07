@@ -40,9 +40,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: NavBar(
-          pageIndex: 0,
-        ));
+        debugShowCheckedModeBanner: false, home: SplashScreen());
   }
 }
