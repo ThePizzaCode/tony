@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
+import 'package:tony/components/NavBar.dart';
 import 'package:tony/pages/SplashScreenPage.dart';
 
 // providers
@@ -39,6 +40,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-        debugShowCheckedModeBanner: false, home: SplashScreen());
+        debugShowCheckedModeBanner: false,
+        home: NavBar(
+          pageIndex: 0,
+        ));
   }
 }
