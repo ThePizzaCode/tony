@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tony/pages/onboarding/OTPPage.dart';
 import '../../components/TextFieldBoxOTP.dart';
+import '../../components/NavBar.dart';
 import '../../env/env.dart';
 import '../../providers/user.dart';
 
@@ -55,19 +56,31 @@ class _PhoneNumberPageState extends State<PhoneNumberPage> {
                   var user = Provider.of<User>(context, listen: false);
                   String phone = phoneFieldController.text;
 
-                  await user.checkUser(phone);
-
-                  if (user.check == true) {
-                    await user.loginPhone(phone);
-                  } else if (user.check == false) {
-                    await user.signupPhone(phone);
-                  }
-
-                  if (user.errorMessage == '') {
+                  // demo functionality
+                  // for appstore and play store approval
+                  if (phone == demoPhone) {
+                    await user.loginDemo();
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const OTPPage()),
+                      MaterialPageRoute(
+                          builder: (context) => const NavBar(pageIndex: 0)),
                     );
+                  } else {
+                    await user.checkUser(phone);
+
+                    if (user.check == true) {
+                      await user.loginPhone(phone);
+                    } else if (user.check == false) {
+                      await user.signupPhone(phone);
+                    }
+
+                    if (user.errorMessage == '') {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const OTPPage()),
+                      );
+                    }
                   }
                 },
                 child: Container(

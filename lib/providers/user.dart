@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import '../env/env.dart';
 import '../models/user_model.dart';
 import '../utils/url.dart';
 import '../storage/storage.dart';
@@ -178,6 +179,64 @@ class User with ChangeNotifier {
       user = UserModel.fromJSON(body['user']);
 
       await setUser(user, token);
+
+      notifyListeners();
+    } else {
+      errorMessage = body['message'];
+
+      notifyListeners();
+    }
+  }
+
+  loginDemo() async {
+    loading = true;
+    notifyListeners();
+
+    final response =
+        await http.post(Uri.parse('${AppURL.baseURL}/users/login/phone'),
+            headers: basicHeader,
+            body: jsonEncode(<String, String>{
+              'phone': demoPhone,
+            }));
+
+    loading = false;
+    notifyListeners();
+
+    final body = json.decode(response.body);
+    if (response.statusCode == 200) {
+      token = body['token'];
+      user = UserModel.fromJSON(body['user']);
+
+      await setUser(user, token);
+
+      notifyListeners();
+    } else {
+      errorMessage = body['message'];
+
+      notifyListeners();
+    }
+  }
+
+  update(String token) async {
+    loading = true;
+    notifyListeners();
+
+    final response = await http.post(
+        Uri.parse('${AppURL.baseURL}/users/update'),
+        headers: authHeader(token),
+        body: {});
+
+    loading = false;
+    notifyListeners();
+
+    final body = json.decode(response.body);
+    if (response.statusCode == 200) {
+      token = body['token'];
+      user = UserModel.fromJSON(body['user']);
+
+      await setUser(user, token);
+
+      notifyListeners();
     } else {
       errorMessage = body['message'];
 

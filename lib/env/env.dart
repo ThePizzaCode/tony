@@ -7,3 +7,5 @@ const Color darkGrey = Color(0XFF6E6E6E);
 
 //Variables
 const int maxLenghtProductPreviewDescription = 100;
+
+const String demoPhone = "1234567890";
