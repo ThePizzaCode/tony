@@ -29,7 +29,6 @@ class _HomePageState extends State<HomePage> {
       walletID = user.user.walletID;
 
       await wallet.getBalance(user.token);
-      await products.getProducts(user.token);
 
       products.sortProductsTag("rec");
     });
