@@ -4,7 +4,6 @@ import './onboarding/LoginPage.dart';
 import '../components/NavBar.dart';
 
 import '../providers/user.dart';
-import '../providers/products.dart';
 
 import 'package:provider/provider.dart';
 
@@ -20,18 +19,17 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       var user = Provider.of<User>(context, listen: false);
-      var products = Provider.of<Products>(context, listen: false);
       await user.loadUser();
 
-      Timer(const Duration(seconds: 1), () async {
-        if (user.token == '' || user.user.id == '') {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const LoginPage()));
-        } else {
-          await user.update(user.token);
+      if (user.token == '' || user.user.id == '') {
+        Timer(
+            const Duration(milliseconds: 500),
+            () => Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const LoginPage())));
+      } else {
+        await user.update(user.token);
 
-          await products.getProducts(user.token);
-
+        Timer(const Duration(milliseconds: 500), () {
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -39,8 +37,8 @@ class _SplashScreenState extends State<SplashScreen> {
                       pageIndex: 0,
                     )),
           );
-        }
-      });
+        });
+      }
     });
 
     super.initState();

@@ -29,6 +29,7 @@ class _HomePageState extends State<HomePage> {
       walletID = user.user.walletID;
 
       await wallet.getBalance(user.token);
+      await products.getProducts(user.token);
 
       products.sortProductsTag("rec");
     });
@@ -162,7 +163,7 @@ class _HomePageState extends State<HomePage> {
                     height: 100,
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      image: DecorationImage(
+                      image: const DecorationImage(
                           image: AssetImage("assets/images/banner.jpg"),
                           fit: BoxFit.cover),
                       borderRadius: BorderRadius.circular(15),

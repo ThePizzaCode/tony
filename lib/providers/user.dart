@@ -71,7 +71,6 @@ class User with ChangeNotifier {
     if (response.statusCode != 200) {
       errorMessage = body['message'];
 
-      print("signup phone: $errorMessage");
       notifyListeners();
     }
   }
@@ -94,8 +93,6 @@ class User with ChangeNotifier {
     final body = json.decode(response.body);
     if (response.statusCode == 200) {
       token = body["token"];
-
-      print(token);
 
       notifyListeners();
     } else {
@@ -152,7 +149,6 @@ class User with ChangeNotifier {
     final body = json.decode(response.body);
     if (response.statusCode != 200) {
       errorMessage = body['message'];
-      print(errorMessage);
 
       notifyListeners();
     }
@@ -224,7 +220,7 @@ class User with ChangeNotifier {
     final response = await http.post(
         Uri.parse('${AppURL.baseURL}/users/update'),
         headers: authHeader(token),
-        body: {});
+        body: jsonEncode({}));
 
     loading = false;
     notifyListeners();
@@ -255,6 +251,6 @@ class User with ChangeNotifier {
 
     await deleteUser();
 
-    print(token);
+    notifyListeners();
   }
 }
