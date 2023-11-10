@@ -33,7 +33,7 @@ class Order with ChangeNotifier {
     loading = false;
     notifyListeners();
 
-    final body = json.decode(response.body);
+    final body = json.decode(utf8.decode(response.bodyBytes));
     if (response.statusCode == 200) {
       order = OrderModel.fromJSON(body);
     } else {
