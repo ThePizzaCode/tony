@@ -169,7 +169,7 @@ class User with ChangeNotifier {
     loading = false;
     notifyListeners();
 
-    final body = json.decode(response.body);
+    final body = json.decode(utf8.decode(response.bodyBytes));
     if (response.statusCode == 200) {
       token = body['token'];
       user = UserModel.fromJSON(body['user']);
@@ -198,7 +198,7 @@ class User with ChangeNotifier {
     loading = false;
     notifyListeners();
 
-    final body = json.decode(response.body);
+    final body = json.decode(utf8.decode(response.bodyBytes));
     if (response.statusCode == 200) {
       token = body['token'];
       user = UserModel.fromJSON(body['user']);
@@ -225,7 +225,7 @@ class User with ChangeNotifier {
     loading = false;
     notifyListeners();
 
-    final body = json.decode(response.body);
+    final body = json.decode(utf8.decode(response.bodyBytes));
     if (response.statusCode == 200) {
       token = body['token'];
       user = UserModel.fromJSON(body['user']);
