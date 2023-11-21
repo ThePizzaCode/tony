@@ -56,6 +56,8 @@ class _PhoneNumberPageState extends State<PhoneNumberPage> {
                   var user = Provider.of<User>(context, listen: false);
                   String phone = phoneFieldController.text;
 
+                  print('debug: ${user.errorMessage}');
+
                   // demo functionality
                   // for appstore and play store approval
                   if (phone == demoPhone) {

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tony/env/env.dart';
+// import 'package:tony/env/env.dart';
 import 'package:tony/pages/ProductPage.dart';
 
 import 'package:tony/providers/user.dart';
 import 'package:tony/utils/url.dart';
+
+import '../utils/shorten.dart';
 
 class ProductPreview extends StatelessWidget {
   final String title;
@@ -24,11 +26,11 @@ class ProductPreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String shortenedDescription = desc;
-    if (desc.length > maxLenghtProductPreviewDescription) {
-      shortenedDescription =
-          '${desc.substring(0, maxLenghtProductPreviewDescription)}...';
-    }
+    // String shortenedDescription = desc;
+    // if (desc.length > maxLenghtProductPreviewDescription) {
+    //   shortenedDescription =
+    //       '${desc.substring(0, maxLenghtProductPreviewDescription)}...';
+    // }
 
     return GestureDetector(
       onTap: () {
@@ -89,7 +91,7 @@ class ProductPreview extends StatelessWidget {
                             fontFamily: 'UberMove'),
                       ),
                       Text(
-                        shortenedDescription,
+                        shorten(desc, 60),
                         style: const TextStyle(
                             fontSize: 13,
                             fontWeight: FontWeight.w500,

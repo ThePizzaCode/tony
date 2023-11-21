@@ -29,7 +29,7 @@ Future<String> getToken() async {
   return prefs.getString('token') ?? '';
 }
 
-deleteUser() async {
+removeUser() async {
   final SharedPreferences prefs = await SharedPreferences.getInstance();
 
   await prefs.remove('user.ID');

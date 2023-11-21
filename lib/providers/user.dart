@@ -249,8 +249,32 @@ class User with ChangeNotifier {
       phone: '',
     );
 
-    await deleteUser();
+    await removeUser();
 
     notifyListeners();
+  }
+
+  deleteUser() async {
+    loading = true;
+    notifyListeners();
+
+    final response = await http.delete(
+        Uri.parse('${AppURL.baseURL}/users/signup'),
+        headers: authHeader(token),
+        body: jsonEncode({}));
+
+    loading = false;
+    notifyListeners();
+
+    final body = json.decode(utf8.decode(response.bodyBytes));
+    if (response.statusCode == 200) {
+      await logout();
+
+      notifyListeners();
+    } else {
+      errorMessage = body['message'];
+
+      notifyListeners();
+    }
   }
 }

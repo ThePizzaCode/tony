@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../components/TransactionPreview.dart';
+import '../components/modals/delete_user_modal.dart';
+import '../components/modals/logout_modal.dart';
 import '../pages/TransactionsPage.dart';
-import '../pages/onboarding/LoginPage.dart';
 
 import '../providers/user.dart';
 import '../providers/wallet.dart';
@@ -160,13 +161,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      final user = Provider.of<User>(context, listen: false);
-                      user.logout();
-
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const LoginPage()));
+                      LogoutModal.show(context);
                     },
                     child: Container(
                       decoration: BoxDecoration(
@@ -185,6 +180,38 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                             Text(
                               'Deconectare',
+                              style: TextStyle(
+                                  fontFamily: 'UberMove',
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w700),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 15),
+                  GestureDetector(
+                    onTap: () {
+                      DeleteUserModal.show(context);
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.grey[200],
+                          borderRadius: BorderRadius.circular(10)),
+                      child: const Padding(
+                        padding: EdgeInsets.all(15.0),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.delete_forever_rounded,
+                              color: Colors.red,
+                            ),
+                            SizedBox(
+                              width: 15,
+                            ),
+                            Text(
+                              'Șterge contul',
                               style: TextStyle(
                                   fontFamily: 'UberMove',
                                   fontSize: 16,
