@@ -39,13 +39,16 @@ class _HomePageState extends State<HomePage> {
 
   double previousBrightness = 0.5;
   void increaseBrightness() async {
-    previousBrightness = await ScreenBrightness().current;
-    double newBrightness = 1;
-    await ScreenBrightness().setScreenBrightness(newBrightness);
+    setState(() async {
+      previousBrightness = await ScreenBrightness().current;
+    });
+    await ScreenBrightness().setScreenBrightness(1);
   }
 
   void restoreBrightness() async {
-    await ScreenBrightness().setScreenBrightness(previousBrightness);
+    setState(() async {
+      await ScreenBrightness().setScreenBrightness(previousBrightness);
+    });
   }
 
   void _openBottomSheet(BuildContext context) {
