@@ -39,7 +39,7 @@ class _MenuPageState extends State<MenuPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    "Meniu",
+                    "Comandă",
                     style: TextStyle(
                         fontSize: 32,
                         fontWeight: FontWeight.w700,

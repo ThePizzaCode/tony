@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 // import 'package:tony/env/env.dart';
 import 'package:tony/pages/ProductPage.dart';
+import 'package:tony/pages/ProductPageNew.dart';
 
 import 'package:tony/providers/user.dart';
 import 'package:tony/utils/url.dart';
@@ -37,7 +38,7 @@ class ProductPreview extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => ProductPage(
+              builder: (context) => ProductPageNew(
                     productID: productID,
                   )),
         );
